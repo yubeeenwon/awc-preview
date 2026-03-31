@@ -4,15 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>에이전틱 워크플로우 모음 — AWC</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/variable/woff2/SUITE-Variable.css">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
 <style>
-:root{--white:#FFF;--bg1:#F7F7F9;--bg2:#F0F0F4;--text:#111;--sub:#666;--light:#999;--accent:#2B5CFF;--kr:'Pretendard Variable','SUITE Variable',sans-serif;--en:'Inter','Pretendard Variable',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:var(--kr);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1320px;margin:0 auto;padding:0 60px}
+:root{--white:var(--c-white);--bg1:var(--c-bg1);--bg2:var(--c-bg2);--text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);--kr:var(--f-kr);--en:var(--f-en)}
 
 .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--en);font-size:.75rem;font-weight:600;color:var(--light);padding:120px 0 40px;transition:color .15s}
 .back:hover{color:var(--text)}

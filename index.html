@@ -12,47 +12,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <style>
+/* Legacy aliases → token bridge (will be removed after full migration) */
 :root{
-  --white:#FFF;--bg1:#F4F4F7;--bg2:#ECEDF2;
-  --text:#111;--sub:#555;--light:#999;--accent:#2B5CFF;
-  --card-bg:#1C1C40;
-  --kr:'Pretendard Variable',system-ui,sans-serif;
-  --en:'Inter','Pretendard Variable',sans-serif;
-  color-scheme:light;
+  --white:var(--c-white);--bg1:var(--c-bg1);--bg2:var(--c-bg2);
+  --text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);
+  --card-bg:var(--c-card-bg);
+  --kr:var(--f-kr);
+  --en:var(--f-en);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--kr);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-img{object-fit:contain;max-width:100%;height:auto;display:block}
-::selection{background:var(--accent);color:var(--white)}
-a{color:inherit;text-decoration:none}
-button{font-family:var(--kr);cursor:pointer}
-
-/* Skip link */
-.skip-link{position:absolute;top:-100%;left:16px;background:var(--text);color:var(--white);padding:8px 16px;border-radius:6px;font-size:.8rem;font-weight:600;z-index:9999;transition:top .2s}
-.skip-link:focus{top:16px}
-
-.wrap{max-width:1320px;margin:0 auto;padding:0 60px}
-
-/* ═══ NAV ═══ */
-.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:1000;display:inline-flex;align-items:center;gap:2px;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:6px 8px;border-radius:50px;box-shadow:0 2px 20px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.04)}
-.nav-item{font-family:var(--en);font-size:.76rem;font-weight:600;color:var(--sub);padding:9px 18px;border-radius:50px;transition:color .15s,background-color .15s;white-space:nowrap;display:inline-block}
-.nav-item:hover{color:var(--text);background:rgba(0,0,0,.04)}
-.nav-item:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.nav-logo{font-weight:800;color:var(--text)!important;font-size:.82rem}
-.nav-cta{background:var(--accent)!important;color:var(--white)!important;font-weight:700;border:none!important;outline:none}
-.nav-cta:hover{background:#2248CC!important}
-.nav-cta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-/* ═══ BTN ═══ */
-.btn{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;padding:12px 24px;border-radius:8px;border:none;transition:background-color .15s,transform .15s,box-shadow .15s}
-.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.btn--primary{color:var(--white);background:var(--text)}.btn--primary:hover{background:var(--accent);transform:translateY(-1px)}
-.btn--sub{color:var(--sub);background:var(--bg1)}.btn--sub:hover{color:var(--text);background:var(--bg2)}
-.btn--white{color:var(--text);background:var(--white)}.btn--white:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.btn--ghost{color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}.btn--ghost:hover{color:var(--white);background:rgba(255,255,255,.14)}
 
 /* ═══ HERO ═══ */
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}
@@ -136,12 +107,7 @@ button{font-family:var(--kr);cursor:pointer}
 .brief-label{font-family:var(--en);font-size:.58rem;font-weight:700;color:var(--light);letter-spacing:2px;text-transform:uppercase;padding-top:3px}
 .brief-value{font-size:.88rem;font-weight:500;color:var(--sub);line-height:1.75;text-wrap:pretty}
 
-/* ═══ SECTIONS ═══ */
-.sec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
-.sec-label{font-family:var(--en);font-size:1.4rem;font-weight:800;letter-spacing:-0.5px}
-.sec-link{font-family:var(--en);font-size:.7rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .15s}
-.sec-link:hover{gap:10px}
-.sec-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* sec-header, sec-label, sec-link → common.css */
 
 /* ═══ CASES ═══ */
 .cases{padding:80px 0}
@@ -247,12 +213,7 @@ textarea.modal-input{resize:vertical;min-height:100px}
 .modal-alt a{color:var(--accent);font-weight:600}
 
 /* ═══ FOOTER ═══ */
-.footer{border-top:1px solid rgba(0,0,0,.06);padding:28px 0 36px}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;font-size:.68rem;color:var(--light)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{color:var(--light);transition:color .15s}
-.footer-links a:hover{color:var(--text)}
-.footer-links a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* footer → common.css */
 
 /* ═══ CHATBOT ═══ */
 .chat-anchor{position:fixed;bottom:40px;right:calc(max(28px,(100vw - 1320px)/2 + 4px));z-index:4000}
@@ -295,8 +256,8 @@ textarea.modal-input{resize:vertical;min-height:100px}
 @keyframes typeDot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
 
 /* ═══ REVEAL ═══ */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
-.rv.vis{opacity:1;transform:translateY(0)}
+/* rv → common.css (index override for spring easing) */
+.rv{transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1200px){.wrap{padding:0 40px}}
@@ -480,7 +441,7 @@ textarea.modal-input{resize:vertical;min-height:100px}
     <p class="modal-alt">또는 직접 이메일: <a href="mailto:bruce@intellieffect.com">bruce@intellieffect.com</a></p>
   </div>
 </div>
-<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+<!-- sr-only → common.css -->
 
 <!-- CHATBOT -->
 <div class="chat-anchor">

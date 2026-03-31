@@ -11,35 +11,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
 <style>
-:root{
-  --white:#FFF;--bg1:#F4F4F7;--bg2:#ECEDF2;
-  --text:#111;--sub:#555;--light:#999;--accent:#2B5CFF;
-  --en:'Inter',sans-serif;--ko:'Pretendard Variable','Pretendard',sans-serif;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--ko);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
-a{color:inherit;text-decoration:none}
-button{font-family:var(--ko);cursor:pointer;border:none;background:none}
-img{max-width:100%;height:auto;object-fit:contain}
-
-.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
-
-/* ═══ NAV (v2 match) ═══ */
-.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:2px;padding:5px 8px;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border:1px solid var(--bg2);border-radius:50px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.nav-item{font-size:.72rem;font-weight:600;padding:10px 18px;border-radius:40px;color:var(--sub);transition:all .2s}
-.nav-item:hover{color:var(--text)}
-.nav-item.--active{background:var(--text);color:var(--white)}
-.nav-logo{font-family:var(--en);font-weight:800;font-size:.8rem;padding:10px 18px;letter-spacing:-.5px}
-
-/* ═══ PAGE HERO ═══ */
-.page-hero{padding:140px 0 48px;text-align:center}
-.page-hero-back{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--light);margin-bottom:32px;transition:color .2s}
-.page-hero-back:hover{color:var(--accent)}
-.page-label{font-family:var(--en);font-size:.65rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.page-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:16px}
-.page-sub{font-size:.85rem;color:var(--sub);line-height:1.7;max-width:420px;margin:0 auto}
+/* Legacy aliases */
+:root{--white:var(--c-white);--bg1:var(--c-bg1);--bg2:var(--c-bg2);--text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);--en:var(--f-en);--ko:var(--f-kr)}
+/* nav-item active state (cases-specific) */
+.nav-item.--active{background:var(--c-text);color:var(--c-white)}
 
 /* ═══ SEARCH & FILTER ═══ */
 .search-bar{max-width:700px;margin:0 auto 20px;position:relative}
@@ -83,13 +61,7 @@ img{max-width:100%;height:auto;object-fit:contain}
 .cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;color:var(--text);background:var(--white);padding:14px 32px;border-radius:8px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
 .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.12)}
 
-/* ═══ FOOTER (v2 match) ═══ */
-.footer{border-top:1px solid var(--bg2);padding:24px 0}
-.footer-inner{display:flex;justify-content:space-between;align-items:center}
-.footer-copy{font-size:.65rem;color:var(--light)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:.65rem;color:var(--light);transition:color .2s}
-.footer-links a:hover{color:var(--text)}
+/* footer → common.css */
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){

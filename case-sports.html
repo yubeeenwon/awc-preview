@@ -7,69 +7,18 @@
 <title>AI 스포츠 기기 — AWC</title>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
 <style>
-:root{--white:#FFF;--bg1:#F4F4F7;--text:#111;--sub:#555;--light:#999;--accent:#2B5CFF;--kr:'Pretendard Variable',system-ui,sans-serif;--en:'Inter','Pretendard Variable',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--kr);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
-a{color:inherit;text-decoration:none}
-img{object-fit:contain;max-width:100%;height:auto;display:block}
-.wrap{max-width:800px;margin:0 auto;padding:0 40px}
-
-/* Back */
-.back{display:inline-flex;align-items:center;gap:6px;font-family:var(--en);font-size:.75rem;font-weight:600;color:var(--light);padding:120px 0 40px;transition:color .15s}
-.back:hover{color:var(--text)}
-
-/* Tag */
-.case-tag{font-family:var(--en);font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-
-/* Title */
-.case-title{font-size:2rem;font-weight:800;line-height:1.3;letter-spacing:-.5px;margin-bottom:16px}
-
-/* Meta */
-.case-meta{font-size:.78rem;color:var(--light);margin-bottom:32px}
-
-/* Hero image placeholder */
-.case-hero-img{aspect-ratio:16/9;background:var(--bg1);border-radius:10px;margin-bottom:32px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.case-hero-img p{font-size:.78rem;color:var(--light);font-weight:500}
-
-/* Results */
-.case-results{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:56px}
-.cr-item{background:var(--bg1);border-radius:8px;padding:24px 20px;text-align:center}
-.cr-val{font-size:1.4rem;font-weight:800;color:var(--accent);margin-bottom:4px;font-variant-numeric:tabular-nums}
-.cr-label{font-size:.68rem;color:var(--sub);font-weight:500}
-
-/* Body */
-.case-body h2{font-size:1.15rem;font-weight:800;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(0,0,0,.06)}
-.case-body h2:first-child{border-top:none;margin-top:0;padding-top:0}
-.case-body h3{font-size:.95rem;font-weight:700;margin:24px 0 8px}
-.case-body p{font-size:.88rem;color:var(--sub);line-height:1.85;margin-bottom:12px}
-.case-body ul{padding-left:20px;margin-bottom:16px}
-.case-body li{font-size:.85rem;color:var(--sub);line-height:1.85;margin-bottom:4px}
-.case-body strong{color:var(--text);font-weight:700}
-.case-body blockquote{background:var(--bg1);border-radius:10px;padding:24px 28px;margin:24px 0;font-size:.88rem;font-style:italic;color:var(--text);line-height:1.8}
-.case-body blockquote cite{display:block;font-size:.72rem;font-style:normal;color:var(--light);margin-top:8px}
-
-/* Inline image placeholder */
-.case-img{aspect-ratio:16/9;background:var(--bg1);border-radius:8px;margin:24px 0;display:flex;align-items:center;justify-content:center}
-.case-img p{font-size:.72rem;color:var(--light)}
-
-/* CTA */
-.case-cta{background:var(--text);border-radius:12px;padding:48px;text-align:center;color:var(--white);margin:56px 0}
-.case-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:8px}
-.case-cta p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
-.case-cta a{display:inline-block;font-family:var(--kr);font-size:.82rem;font-weight:700;color:var(--text);background:var(--white);padding:12px 28px;border-radius:8px;transition:all .15s}
-.case-cta a:hover{box-shadow:0 4px 16px rgba(0,0,0,.15)}
-
-/* Footer */
-.case-footer{padding:24px 0 48px;font-size:.68rem;color:var(--light);text-align:center}
-.case-footer a{color:var(--accent)}
-
-@media(max-width:768px){
-  .wrap{padding:0 20px}
-  .case-results{grid-template-columns:1fr 1fr}
-  .case-title{font-size:1.5rem}
-}
+/* case-sports: page-specific only */
+:root{--white:var(--c-white);--bg1:var(--c-bg1);--text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);--kr:var(--f-kr);--en:var(--f-en)}
+.wrap{max-width:var(--max-w-text)}
+.back{display:inline-flex;align-items:center;gap:var(--s-2);font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:var(--c-light);padding:var(--s-30) 0 var(--s-10);transition:color .15s}
+.back:hover{color:var(--c-text)}
+.case-hero-img{aspect-ratio:16/9;background:var(--c-bg1);border-radius:var(--r-lg);margin-bottom:var(--s-8);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.case-hero-img p{font-size:var(--t-sm);color:var(--c-light);font-weight:var(--w-medium)}
+.case-img{aspect-ratio:16/9;background:var(--c-bg1);border-radius:var(--r-md);margin:var(--s-6) 0;display:flex;align-items:center;justify-content:center}
+.case-img p{font-size:var(--t-sm);color:var(--c-light)}
 </style>
 </head>
 <body>
