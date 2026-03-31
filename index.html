@@ -26,18 +26,15 @@
 }
 
 /* ═══ HERO ═══ */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}
+.hero{min-height:auto;display:flex;align-items:center;padding-top:80px;padding-bottom:32px}
 .hero-inner{text-align:center;max-width:720px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--en);font-size:.7rem;font-weight:700;color:var(--accent);background:rgba(43,92,255,.06);padding:8px 18px;border-radius:50px;margin-bottom:48px;border:1px solid rgba(43,92,255,.1)}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:hdot 2s ease-in-out infinite}
 @keyframes hdot{0%,100%{opacity:.4}50%{opacity:1}}
 .hero-title{font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:800;line-height:1.12;letter-spacing:-1.5px;margin-bottom:20px;text-wrap:balance}
-.hero-desc{font-size:1.05rem;color:var(--sub);font-weight:500;line-height:1.75;margin-bottom:56px;max-width:520px;margin-left:auto;margin-right:auto;text-wrap:pretty}
+.hero-desc{font-size:1.05rem;color:var(--sub);font-weight:500;line-height:1.75;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;text-wrap:pretty}
 .hero-ctas{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.hero-trust{display:flex;justify-content:center;gap:40px;margin-top:56px;flex-wrap:wrap}
-.hero-trust-item{text-align:center}
-.hero-trust-num{font-family:var(--en);font-size:1.6rem;font-weight:800;letter-spacing:-1px;color:var(--text);font-variant-numeric:tabular-nums}
-.hero-trust-label{font-size:.65rem;color:var(--light);font-weight:500;margin-top:2px}
+
 
 /* ═══ HERO MOTION ═══ */
 .hero-motion{background:linear-gradient(145deg,#D0DFFF 0%,#B8CCFF 30%,#8FAAEE 70%,#7B96E8 100%);border-radius:20px;position:relative;overflow:hidden;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;perspective:1200px}
@@ -96,6 +93,17 @@
 .hm-fc1{top:10%;right:4%}.hm-fc2{bottom:12%;left:3%}
 .hm-fc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .hm-fc1 .hm-fc-dot{background:#10B981}.hm-fc2 .hm-fc-dot{background:#3B82F6}
+
+/* ═══ STUDIO BANNER ═══ */
+.studio-banner-section{padding:0 0 40px}
+.studio-banner{background:var(--c-bg2);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px}
+.studio-banner-top{display:flex;justify-content:space-between;align-items:center}
+.studio-banner-tag{font-family:var(--en);font-size:.65rem;font-weight:500;color:#888;letter-spacing:.5px}
+.studio-banner-time{font-family:var(--en);font-size:.65rem;font-weight:500;color:#888;font-variant-numeric:tabular-nums}
+.studio-banner-title{font-family:var(--en);font-size:clamp(5rem,12vw,9rem);font-weight:900;letter-spacing:-3px;line-height:1;text-align:center;color:var(--text);padding:20px 0}
+.studio-banner-bottom{display:flex;gap:20px;align-items:center}
+.studio-banner-bottom a{font-family:var(--en);font-size:.65rem;font-weight:500;color:#888;transition:color .2s}
+.studio-banner-bottom a:hover{color:var(--text)}
 
 /* ═══ BRIEF ═══ */
 .brief{background:var(--bg1);padding:88px 0}
@@ -185,7 +193,7 @@ div.case-card{background:var(--card-bg);cursor:default}
 
 /* ═══ CTA ═══ */
 .cta{padding:80px 0}
-.cta-block{background:var(--text);border-radius:12px;padding:72px 64px;display:flex;justify-content:space-between;align-items:center;color:var(--white);gap:40px;flex-wrap:wrap}
+.cta-block{background:var(--c-text);border-radius:12px;padding:72px 64px;display:flex;justify-content:space-between;align-items:center;color:var(--white);gap:40px;flex-wrap:wrap}
 .cta-title{font-size:1.8rem;font-weight:800;line-height:1.35;margin-bottom:10px;text-wrap:balance}
 .cta-sub{font-size:.9rem;color:rgba(255,255,255,.4);font-weight:500}
 .cta-btns{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
@@ -262,7 +270,15 @@ textarea.modal-input{resize:vertical;min-height:100px}
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1200px){.wrap{padding:0 40px}}
 @media(max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:40px}}
-@media(max-width:768px){.wrap{padding:0 20px}.nav{top:12px;padding:5px 6px}.nav-item{font-size:.68rem;padding:8px 12px}.hero{min-height:auto;padding:100px 0 60px}.brief-layout{grid-template-columns:1fr;gap:32px}.cases-grid{grid-template-columns:1fr}.case-card{aspect-ratio:4/5}.wf-sources{grid-template-columns:1fr;gap:16px}.wf-connector svg{width:120px}.cta-block{flex-direction:column;align-items:flex-start;padding:48px 32px}.nl-inner{flex-direction:column;align-items:flex-start}.footer-inner{flex-direction:column;gap:12px;text-align:center}.footer-links{justify-content:center}.modal{padding:36px 24px}.chat-anchor{right:16px;bottom:32px}.chat-panel{width:calc(100vw - 32px);max-height:60vh}}
+@media(min-width:769px){
+  .hero{padding-top:12vh;padding-bottom:3vh}
+  .hero-title{margin-bottom:14px}
+  .hero-ctas{margin-bottom:0}
+  .studio-banner-section{padding:0 0 3vh}
+  .studio-banner{min-height:240px;padding:32px 40px}
+  .studio-banner-title{font-size:clamp(6rem,10vw,10rem)}
+}
+@media(max-width:768px){.wrap{padding:0 20px}.nav{top:12px;padding:5px 6px}.nav-item{font-size:.68rem;padding:8px 12px}.hero{min-height:auto;padding:100px 0 32px}.studio-banner{min-height:160px;padding:20px 24px}.studio-banner-title{font-size:clamp(3.5rem,15vw,6rem)}.brief-layout{grid-template-columns:1fr;gap:32px}.cases-grid{grid-template-columns:1fr}.case-card{aspect-ratio:4/5}.wf-sources{grid-template-columns:1fr;gap:16px}.wf-connector svg{width:120px}.cta-block{flex-direction:column;align-items:flex-start;padding:48px 32px}.nl-inner{flex-direction:column;align-items:flex-start}.footer-inner{flex-direction:column;gap:12px;text-align:center}.footer-links{justify-content:center}.modal{padding:36px 24px}.chat-anchor{right:16px;bottom:32px}.chat-panel{width:calc(100vw - 32px);max-height:60vh}}
 </style>
 </head>
 <body>
@@ -274,7 +290,6 @@ textarea.modal-input{resize:vertical;min-height:100px}
   <a href="#" class="nav-item nav-logo">AWC</a>
   <a href="#cases" class="nav-item">Cases</a>
   <a href="#workflow" class="nav-item">Workflow</a>
-  <a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener" class="nav-item">Community</a>
   <button class="nav-item nav-cta" onclick="openModal()" type="button">Contact</button>
 </nav>
 
@@ -283,53 +298,29 @@ textarea.modal-input{resize:vertical;min-height:100px}
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
-      <div class="hero-badge rv"><span class="hero-badge-dot"></span>Agentic Workflows</div>
       <h1 class="hero-title rv">Agent가 일하는<br>시대가 왔다</h1>
       <p class="hero-desc rv">목표를 주면 스스로 계획하고, 실행하고, 검토까지. 에이전틱 워크플로우는 일하는 방식 그 자체를 바꿉니다.</p>
       <div class="hero-ctas rv">
-        <a href="#cases" class="btn btn--sub">사례</a>
         <button class="btn btn--primary" onclick="openModal()" type="button">Contact</button>
       </div>
-      <div class="hero-trust rv">
-        <div class="hero-trust-item"><div class="hero-trust-num">1,282</div><div class="hero-trust-label">팔로워</div></div>
-        <div class="hero-trust-item"><div class="hero-trust-num">22</div><div class="hero-trust-label">레슨 신청</div></div>
-        <div class="hero-trust-item"><div class="hero-trust-num">₩0</div><div class="hero-trust-label">광고비</div></div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- HERO MOTION (separate section) -->
-<section style="padding:0 0 40px">
+<!-- STUDIO BANNER -->
+<section class="studio-banner-section">
   <div class="wrap">
-    <div class="rv">
-      <div class="hero-motion" role="img" aria-label="에이전틱 워크플로우 대시보드 애니메이션">
-          <div class="hm-blob hm-b1" aria-hidden="true"></div><div class="hm-blob hm-b2" aria-hidden="true"></div><div class="hm-blob hm-b3" aria-hidden="true"></div><div class="hm-b4" aria-hidden="true"></div><div class="hm-b5" aria-hidden="true"></div><div class="hm-cone" aria-hidden="true"></div>
-          <div class="hm-float-card hm-fc1" aria-hidden="true"><div class="hm-fc-dot"></div>Workflow running</div>
-          <div class="hm-float-card hm-fc2" aria-hidden="true"><div class="hm-fc-dot"></div>3 tasks completed</div>
-          <div class="hm-main" aria-hidden="true">
-            <div class="hm-card hm-top">
-              <div class="hm-titlebar"><div class="hm-dot"></div><div class="hm-dot"></div><div class="hm-dot"></div></div>
-              <div class="hm-tab-bar"><div class="hm-tab active">Workflow</div><div class="hm-tab">Tasks</div><div class="hm-tab">Reports</div></div>
-              <div class="hm-flow">
-                <div class="hm-node hm-n1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v4m0 12v4m-10-10h4m12 0h4"/></svg></div>
-                <div class="hm-connector"></div>
-                <div class="hm-node hm-n2"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6m-6 3h4"/></svg></div>
-                <div class="hm-connector"></div>
-                <div class="hm-node hm-n3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                <div class="hm-connector"></div>
-                <div class="hm-node hm-n4"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-              </div>
-            </div>
-            <div class="hm-card hm-bottom">
-              <div class="hm-data-rows">
-                <div class="hm-drow"><div class="hm-drow-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6m-6 3h4"/></svg></div><div class="hm-drow-bar"><div class="hm-drow-fill"></div></div><div class="hm-drow-badge">85%</div></div>
-                <div class="hm-drow"><div class="hm-drow-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg></div><div class="hm-drow-bar"><div class="hm-drow-fill"></div></div><div class="hm-drow-badge">Done</div></div>
-                <div class="hm-drow"><div class="hm-drow-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="hm-drow-bar"><div class="hm-drow-fill"></div></div><div class="hm-drow-badge">In progress</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="studio-banner rv">
+      <div class="studio-banner-top">
+        <span class="studio-banner-tag">creative practice</span>
+        <span class="studio-banner-time" id="studioTime"></span>
+      </div>
+      <h2 class="studio-banner-title">AWC</h2>
+      <div class="studio-banner-bottom">
+        <a href="https://threads.net/@brxce.ai" target="_blank" rel="noopener">Threads</a>
+        <a href="https://instagram.com/brxce.ai" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://agenticworkflows.club" target="_blank" rel="noopener">agenticworkflows.club</a>
       </div>
     </div>
   </div>
@@ -467,6 +458,10 @@ textarea.modal-input{resize:vertical;min-height:100px}
 </div>
 
 <script>
+// Studio banner live clock
+function updateStudioTime(){const el=document.getElementById('studioTime');if(!el)return;const now=new Date();el.textContent=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+updateStudioTime();setInterval(updateStudioTime,1000);
+
 // Knowledge base
 const kb=[{k:['에이전틱','워크플로우','뭐','무엇','개념','정의','설명'],a:'<strong>에이전틱 워크플로우</strong>는 AI 에이전트가 목표를 받아서 스스로 계획하고 도구를 활용해 업무를 실행하는 방식이에요. 기존 자동화와 달리 상황에 따라 유연하게 판단합니다.<br><br>아래 워크플로우 섹션에서 자세히 확인해보세요.'},{k:['챗봇','차이','다른','gpt','chatgpt'],a:'챗봇은 질문하면 답만 해요. 에이전틱 워크플로우는 <strong>목표를 주면 스스로 계획→실행→검증</strong>까지 합니다.'},{k:['자동화','rpa','매크로'],a:'기존 자동화(RPA)는 정해진 규칙대로만 움직여요. 에이전틱 워크플로우는 <strong>AI가 상황을 판단하고 유연하게 대응</strong>합니다.'},{k:['awc','에이더블유씨','클럽','커뮤니티'],a:'<strong>AWC(Agentic Workflows Club)</strong>는 에이전틱 워크플로우 실전 커뮤니티예요. "같이 해보자"는 방향입니다.<br><br><a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">오픈채팅 참여 →</a>'},{k:['bruce','브루스','대표','누구','만든'],a:'<strong>Bruce Choe</strong> — IntelliEffect CEO이자 AWC 운영자. 에이전틱 워크플로우 설계·구축 전문가입니다.'},{k:['인텔리이펙트','intellieffect','회사'],a:'<strong>IntelliEffect</strong>는 에이전틱 워크플로우 전문 구축 회사예요.<br><br><a href="https://intellieffect.com" target="_blank" rel="noopener">IntelliEffect →</a>'},{k:['비용','가격','얼마','돈','무료','유료'],a:'OpenClaw는 <strong>오픈소스라 무료</strong>예요. AI 모델 비용만 월 수만 원 수준. 구축 비용은 규모에 따라 달라요.'},{k:['코딩','개발','프로그래밍','몰라도','기술','어려'],a:'<strong>전혀 몰라도 돼요!</strong> <a href="case-piano.html">피아노 사례</a>의 대표님은 음악치료 전공자예요. 초기 세팅은 AWC가 담당하고, 이후 텔레그램에서 자연어로 운영해요.'},{k:['피아노','키즈마인드','교육','레슨','사례'],a:'<strong>키즈마인드피아노</strong> — 팔로워 1,282명, 댓글 361개, 레슨 신청 22명. 유료 광고 0원.<br><br><a href="case-piano.html">자세히 보기 →</a>'},{k:['과정','절차','단계','순서','어떻게'],a:'<strong>3단계</strong>로 진행돼요.<br>01 분석 — 업무 흐름을 파악하고 Agent가 들어갈 지점을 찾습니다<br>02 구축 — 맞춤형 에이전트를 설계하고 연동합니다<br>03 운영 — 실제로 돌리면서 계속 다듬어 갑니다'},{k:['시간','기간','소요'],a:'초기 세팅은 보통 <strong>1~2주</strong>. 이후 바로 운영 가능하고, 에이전트가 점점 정교해져요.'},{k:['분야','업종','적용','가능','우리도'],a:'교육, 디자인, 식품 등 구축 사례가 있고, <strong>반복 업무가 있는 모든 분야</strong>에 적용 가능해요.'},{k:['마케팅','콘텐츠','sns','쓰레드'],a:'대표적 활용 분야예요. 피아노 사례에서도 <strong>쓰레드 콘텐츠 자동 생성</strong>이 핵심이었어요.'},{k:['openclaw','오픈클로','플랫폼','도구'],a:'<strong>OpenClaw</strong>는 AI 에이전트를 만들고 운영하는 오픈소스 플랫폼이에요. 텔레그램, 슬랙 등과 연동돼요.'},{k:['ax','전환','transformation'],a:'<strong>AX(Agent Experience) 전환</strong>은 DX 이후의 다음 단계. 업무 프로세스를 에이전트 중심으로 재설계하는 것이에요.'},{k:['보안','데이터','안전','개인정보'],a:'OpenClaw는 오픈소스라 <strong>데이터가 외부로 나가지 않아요</strong>. 자체 서버 운영 가능.'},{k:['소규모','1인','혼자','스타트업'],a:'<strong>소규모일수록 효과가 커요</strong>. 한 사람이 여러 역할을 하는 상황에서 AI 에이전트가 병목을 풀어줘요.'},{k:['상담','문의','도입','연락','시작'],a:'편하게 연락주세요!<br>📧 <a href="mailto:bruce@intellieffect.com">bruce@intellieffect.com</a><br>💬 <a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">AWC 오픈채팅</a>'},{k:['안녕','하이','hello','hi','반가','감사'],a:'안녕하세요! 궁금한 게 있으시면 편하게 물어보세요 😊'}];
 function findAnswer(q){const ql=q.toLowerCase().replace(/[?!.,]/g,'');let best=null,bs=0;for(const i of kb){let s=0;for(const k of i.k)if(ql.includes(k))s++;if(s>bs){bs=s;best=i.a}}return best}
@@ -494,20 +489,7 @@ function sendChat(){const i=document.getElementById('chatInput'),q=i.value.trim(
   });
 })();
 
-// GSAP Hero Motion
-document.addEventListener('DOMContentLoaded',function(){
-  if(typeof gsap==='undefined'||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  function play(){const tl=gsap.timeline({repeat:-1,repeatDelay:3});gsap.to('.hm-b1',{y:-30,x:20,duration:5,ease:'sine.inOut',yoyo:true,repeat:-1});gsap.to('.hm-b2',{y:25,x:-15,duration:6,ease:'sine.inOut',yoyo:true,repeat:-1,delay:1});gsap.to('.hm-b3',{y:-20,x:12,duration:4,ease:'sine.inOut',yoyo:true,repeat:-1,delay:2});gsap.to('.hm-main',{y:-6,duration:3.5,ease:'sine.inOut',yoyo:true,repeat:-1});tl.to('.hm-b1',{opacity:1,duration:1.2,ease:'power2.out'},0).to('.hm-b2',{opacity:1,duration:1.2},.3).to('.hm-b3',{opacity:1,duration:1.2},.5);tl.to('.hm-top',{opacity:1,y:0,duration:.8,ease:'back.out(1.4)'},.6).to('.hm-bottom',{opacity:1,y:0,duration:.8,ease:'back.out(1.4)'},.9);tl.to('.hm-n1',{opacity:1,scale:1,duration:.4,ease:'back.out(2.5)'},1.4).to('.hm-n2',{opacity:1,scale:1,duration:.4,ease:'back.out(2.5)'},1.7).to('.hm-n3',{opacity:1,scale:1,duration:.4,ease:'back.out(2.5)'},2.0).to('.hm-n4',{opacity:1,scale:1,duration:.4,ease:'back.out(2.5)'},2.3);document.querySelectorAll('.hm-connector').forEach((c,i)=>{const d=document.createElement('div');d.style.cssText='height:100%;width:0;background:linear-gradient(90deg,rgba(43,92,255,.2),rgba(99,102,241,.12));border-radius:1px';c.appendChild(d);tl.to(d,{width:'100%',duration:.4,ease:'power2.out'},1.5+i*.3)});tl.to('.hm-drow:nth-child(1)',{opacity:1,x:0,duration:.5,ease:'power3.out'},2.6).to('.hm-drow:nth-child(2)',{opacity:1,x:0,duration:.5},2.8).to('.hm-drow:nth-child(3)',{opacity:1,x:0,duration:.5},3.0);tl.to('.hm-drow:nth-child(1) .hm-drow-fill',{width:'85%',duration:.8,ease:'power2.out'},3.2).to('.hm-drow:nth-child(2) .hm-drow-fill',{width:'100%',duration:.8},3.4).to('.hm-drow:nth-child(3) .hm-drow-fill',{width:'60%',duration:.8},3.6);tl.to('.hm-drow:nth-child(1) .hm-drow-badge',{opacity:1,scale:1,duration:.3,ease:'back.out(3)'},3.8).to('.hm-drow:nth-child(2) .hm-drow-badge',{opacity:1,scale:1,duration:.3},4.0).to('.hm-drow:nth-child(3) .hm-drow-badge',{opacity:1,scale:1,duration:.3},4.2);tl.to('.hm-fc1',{opacity:1,y:0,duration:.5,ease:'back.out(1.5)'},2.0).to('.hm-fc2',{opacity:1,y:0,duration:.5},3.0);gsap.to('.hm-node',{scale:.93,duration:2,ease:'sine.inOut',yoyo:true,repeat:-1,delay:3,stagger:.4});tl.to(['.hm-card','.hm-float-card'],{opacity:0,y:12,duration:1,ease:'power2.in',stagger:.05},9).to('.hm-node',{opacity:0,scale:.5,duration:.5,stagger:.05},9).to('.hm-drow',{opacity:0,x:-8,duration:.4,stagger:.08},9).to('.hm-drow-badge',{opacity:0,scale:.3,duration:.3},9).to('.hm-drow-fill',{width:0,duration:.4},9)}
-  gsap.set('.hm-fc1',{y:10});gsap.set('.hm-fc2',{y:10});
-  // Extra bubbles float
-  gsap.to('.hm-b4',{opacity:.6,duration:2,delay:1.5,ease:'power2.out'});
-  gsap.to('.hm-b5',{opacity:.5,duration:2,delay:2,ease:'power2.out'});
-  gsap.to('.hm-cone',{opacity:.4,duration:2,delay:1.8,ease:'power2.out'});
-  gsap.to('.hm-b4',{y:-12,x:6,duration:4,ease:'sine.inOut',yoyo:true,repeat:-1,delay:1});
-  gsap.to('.hm-b5',{y:10,x:-8,duration:5,ease:'sine.inOut',yoyo:true,repeat:-1,delay:2});
-  gsap.to('.hm-cone',{y:-8,rotation:15,duration:6,ease:'sine.inOut',yoyo:true,repeat:-1});
-  setTimeout(play,400);
-});
+
 
 // Reveal
 const ro=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
