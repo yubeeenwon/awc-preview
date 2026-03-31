@@ -116,6 +116,7 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
 .footer { border-top: 1px solid var(--c-bg2); padding: var(--s-6) 0 }
 .footer-inner { display: flex; justify-content: space-between; align-items: center }
 .footer-copy { font-size: var(--t-xs); color: var(--c-light) }
+.footer-inner span { font-size: var(--t-xs); color: var(--c-light) }
 .footer-links { display: flex; gap: var(--s-5) }
 .footer-links a {
   font-size: var(--t-xs); color: var(--c-light); transition: color var(--ease-default);
