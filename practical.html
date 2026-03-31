@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에이전틱 워크플로우 모음 — AWC</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/variable/woff2/SUITE-Variable.css">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFF;--bg1:#F7F7F9;--bg2:#F0F0F4;--text:#111;--sub:#666;--light:#999;--accent:#2B5CFF;--kr:'Pretendard Variable','SUITE Variable',sans-serif;--en:'Inter','Pretendard Variable',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--kr);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 60px}
+
+.back{display:inline-flex;align-items:center;gap:6px;font-family:var(--en);font-size:.75rem;font-weight:600;color:var(--light);padding:120px 0 40px;transition:color .15s}
+.back:hover{color:var(--text)}
+
+.page-header{margin-bottom:56px}
+.page-tag{font-family:var(--en);font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.page-title{font-size:2.2rem;font-weight:800;letter-spacing:-.5px;margin-bottom:12px}
+.page-desc{font-size:.95rem;color:var(--sub);line-height:1.7;max-width:600px}
+
+/* Steps overview */
+.steps-overview{background:var(--bg1);border-radius:12px;padding:48px;margin-bottom:64px}
+.steps-title{font-size:1rem;font-weight:800;margin-bottom:28px}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step-card{background:var(--white);border-radius:10px;padding:28px 22px}
+.step-num{font-family:var(--en);font-size:.58rem;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:14px}
+.step-card h4{font-size:.88rem;font-weight:800;margin-bottom:6px}
+.step-card p{font-size:.75rem;color:var(--sub);line-height:1.7}
+
+/* Patterns */
+.patterns-header{font-family:var(--en);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+.pattern-list{display:flex;flex-direction:column;gap:0}
+.pattern-row{display:grid;grid-template-columns:80px 1fr 200px;align-items:center;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06);transition:background .15s}
+.pattern-row:first-child{border-top:1px solid rgba(0,0,0,.06)}
+.pattern-row:hover{background:var(--bg1);padding-left:8px;padding-right:8px;border-radius:8px}
+.pr-code{font-family:var(--en);font-size:.72rem;font-weight:700;color:var(--accent)}
+.pr-title{font-size:.9rem;font-weight:700}
+.pr-tag{font-family:var(--en);font-size:.6rem;font-weight:600;color:var(--light);letter-spacing:1px;text-transform:uppercase;text-align:right}
+
+/* CTA */
+.page-cta{background:var(--text);border-radius:12px;padding:48px;text-align:center;color:var(--white);margin:64px 0}
+.page-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.page-cta p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
+.page-cta a{display:inline-block;font-family:var(--kr);font-size:.82rem;font-weight:700;color:var(--text);background:var(--white);padding:12px 28px;border-radius:8px;transition:all .15s}
+.page-cta a:hover{box-shadow:0 4px 16px rgba(0,0,0,.15)}
+
+.page-footer{padding:24px 0 48px;font-size:.68rem;color:var(--light);text-align:center}
+.page-footer a{color:var(--accent)}
+
+@media(max-width:1024px){.steps-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.wrap{padding:0 20px}.steps-grid{grid-template-columns:1fr}.pattern-row{grid-template-columns:60px 1fr;gap:4px}.pr-tag{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Back</a>
+
+  <div class="page-header">
+    <div class="page-tag">Practical Workflows</div>
+    <h1 class="page-title">에이전틱 워크플로우 모음</h1>
+    <p class="page-desc">사례별 에이전틱 워크플로우 활용 방법. AI 에이전트가 업무를 처리하는 4단계 프로세스와 분야별 적용 패턴을 확인하세요.</p>
+  </div>
+
+  <div class="steps-overview">
+    <h2 class="steps-title">에이전틱 워크플로우 4단계</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><h4>인지 (Perceive)</h4><p>이메일, 문서, 데이터 등 환경을 감지하고 현재 상태를 파악합니다.</p></div>
+      <div class="step-card"><div class="step-num">02</div><h4>계획 (Plan)</h4><p>목표 달성을 위한 최적 경로를 자율적으로 설계합니다.</p></div>
+      <div class="step-card"><div class="step-num">03</div><h4>실행 (Act)</h4><p>도구를 활용해 코드 작성, 메일 발송, 데이터 분석 등 실제 작업을 수행합니다.</p></div>
+      <div class="step-card"><div class="step-num">04</div><h4>개선 (Reflect)</h4><p>결과를 검증하고 오류를 스스로 수정하며, 다음 사이클을 최적화합니다.</p></div>
+    </div>
+  </div>
+
+  <div class="patterns-header">적용 가능 분야</div>
+  <div class="pattern-list">
+    <div class="pattern-row"><span class="pr-code">P1</span><span class="pr-title">피아노 교육 — 커리큘럼 설계 & 마케팅 자동화</span><span class="pr-tag">Education</span></div>
+    <div class="pattern-row"><span class="pr-code">P2</span><span class="pr-title">디자인 — 에이전트 기반 워크플로우 구축</span><span class="pr-tag">Design</span></div>
+    <div class="pattern-row"><span class="pr-code">P3</span><span class="pr-title">식품 — 업무 프로세스 에이전트 전환</span><span class="pr-tag">Food</span></div>
+    <div class="pattern-row"><span class="pr-code">P4</span><span class="pr-title">고객 지원 — 문의 자동 분류 & 응답</span><span class="pr-tag">CS</span></div>
+    <div class="pattern-row"><span class="pr-code">P5</span><span class="pr-title">코드 리뷰 — PR 자동 분석 & QA</span><span class="pr-tag">Dev</span></div>
+    <div class="pattern-row"><span class="pr-code">P6</span><span class="pr-title">콘텐츠 — 생성 & 큐레이션 자동화</span><span class="pr-tag">Content</span></div>
+    <div class="pattern-row"><span class="pr-code">P7</span><span class="pr-title">HR — 채용 프로세스 자동화</span><span class="pr-tag">HR</span></div>
+    <div class="pattern-row"><span class="pr-code">P8</span><span class="pr-title">리포팅 — 일간/주간 리포트 자동 생성</span><span class="pr-tag">Ops</span></div>
+  </div>
+
+  <div class="page-cta">
+    <h3>우리 업무에도 적용할 수 있을까?</h3>
+    <p>에이전틱 워크플로우 도입에 대해 부담 없이 물어보세요.</p>
+    <a href="mailto:bruce@intellieffect.com">도입 문의하기</a>
+  </div>
+
+  <div class="page-footer">
+    <a href="index.html">AWC</a> · Bruce Choe · <a href="https://brxce.ai">agenticworkflows.club</a>
+  </div>
+</div>
+</body>
+</html>
