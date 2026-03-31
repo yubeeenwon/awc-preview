@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="AWC 실전 사례 — 에이전틱 워크플로우로 업무 방식을 바꾼 기업들의 기록.">
+<title>AWC — 실전 사례</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* Legacy aliases */
+:root{--white:var(--c-white);--bg1:var(--c-bg1);--bg2:var(--c-bg2);--text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);--en:var(--f-en);--ko:var(--f-kr)}
+/* nav-item active state (cases-specific) */
+.nav-item.--active{background:var(--c-text);color:var(--c-white)}
+
+/* ═══ SEARCH & FILTER ═══ */
+.search-bar{max-width:700px;margin:0 auto 20px;position:relative}
+.search-input{width:100%;padding:14px 20px 14px 48px;font-size:.82rem;font-family:var(--ko);border:1px solid var(--bg2);border-radius:12px;background:var(--bg1);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,92,255,.08)}
+.search-input::placeholder{color:var(--light)}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--light);pointer-events:none}
+
+.filter-bar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.filter-btn{font-size:.7rem;font-weight:600;padding:8px 20px;border-radius:40px;color:var(--sub);border:1px solid var(--bg2);transition:all .2s}
+.filter-btn:hover{border-color:var(--sub);color:var(--text)}
+.filter-btn.--active{background:var(--text);color:var(--white);border-color:var(--text)}
+
+/* ═══ CASE GRID ═══ */
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:80px}
+.case-card{position:relative;border-radius:12px;overflow:hidden;background:var(--bg1);aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s,box-shadow .25s;text-decoration:none;color:var(--text)}
+.case-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.case-card-img{position:absolute;inset:0;background-size:cover;background-position:center}
+.case-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.05) 50%,transparent 100%)}
+.case-card-body{position:relative;z-index:2;padding:28px}
+.case-card-tag{font-family:var(--en);font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:8px}
+.case-card-title{font-size:.95rem;font-weight:800;color:#f2f2f2;line-height:1.4;margin-bottom:8px}
+.case-card-stat{font-size:.72rem;color:rgba(255,255,255,.6)}
+.case-card.--placeholder{background:var(--bg1);justify-content:center;align-items:center;text-align:center}
+.case-card.--placeholder .case-card-body{padding:36px}
+.case-card.--placeholder .case-card-tag{color:var(--accent)}
+.case-card.--placeholder .case-card-title{color:var(--text);font-size:.88rem}
+.case-card.--placeholder .case-card-stat{color:var(--light)}
+
+/* ═══ EMPTY STATE ═══ */
+.empty-state{display:none;text-align:center;padding:80px 20px}
+.empty-state.--show{display:block}
+.empty-icon{font-size:2.4rem;margin-bottom:16px;opacity:.4}
+.empty-title{font-size:.95rem;font-weight:700;margin-bottom:8px}
+.empty-desc{font-size:.78rem;color:var(--sub);margin-bottom:24px}
+
+/* ═══ CTA BANNER ═══ */
+.cta-banner{background:var(--text);border-radius:16px;padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin-bottom:80px}
+.cta-banner-text h2{font-size:1.2rem;font-weight:800;color:#f2f2f2;margin-bottom:8px}
+.cta-banner-text p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;color:var(--text);background:var(--white);padding:14px 32px;border-radius:8px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.12)}
+
+/* footer → common.css */
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .case-grid{grid-template-columns:1fr 1fr}
+  .cta-banner{flex-direction:column;align-items:flex-start;padding:40px 32px}
+}
+@media(max-width:600px){
+  .wrap{padding:0 20px}
+  .case-grid{grid-template-columns:1fr}
+  .case-card{aspect-ratio:3/4}
+  .nav-item{font-size:.65rem;padding:8px 14px}
+  .footer-inner{flex-direction:column;gap:12px;text-align:center}
+  .footer-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-item nav-logo" href="index.html">AWC</a>
+  <a class="nav-item" href="index.html">Home</a>
+  <a class="nav-item --active" href="cases.html">Cases</a>
+  <a class="nav-item" href="index.html#workflow">Workflow</a>
+  <a class="nav-item" href="community.html">Community</a>
+</nav>
+
+<main>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <a href="index.html" class="page-hero-back">← Back</a>
+    <p class="page-label">Cases</p>
+    <h1 class="page-title">실전 사례 아카이브</h1>
+    <p class="page-sub">이론이 아닌 결과. Agent를 업무에 투입한 실제 기록.</p>
+  </div>
+</section>
+
+<!-- SEARCH & FILTER -->
+<section class="wrap">
+  <div class="search-bar">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="search-input" id="searchInput" placeholder="업종, 키워드로 사례 검색… (예: 교육, 마케팅, 이커머스)">
+  </div>
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn --active" data-filter="all">전체</button>
+    <button class="filter-btn" data-filter="education">Education</button>
+    <button class="filter-btn" data-filter="sports">Sports</button>
+    <button class="filter-btn" data-filter="food">Food</button>
+    <button class="filter-btn" data-filter="marketing">Marketing</button>
+    <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+    <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+  </div>
+</section>
+
+<!-- CASE GRID -->
+<section class="wrap">
+  <div class="case-grid" id="caseGrid"></div>
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🔍</div>
+    <p class="empty-title">검색 결과가 없습니다</p>
+    <p class="empty-desc">다른 키워드로 검색하거나, 필터를 변경해 보세요.</p>
+    <button class="cta-btn" onclick="resetSearch()" style="margin:0 auto">전체 보기</button>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="wrap">
+  <div class="cta-banner">
+    <div class="cta-banner-text">
+      <h2>우리 업무에도 Agent를 투입할 수 있을까?</h2>
+      <p>어떤 일을 하고 계신지 들려주세요. 함께 살펴봅니다.</p>
+    </div>
+    <a href="mailto:bruce@intellieffect.com?subject=에이전틱 워크플로우 도입 문의" class="cta-btn">문의하기 →</a>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 AWC · Bruce Choe · IntelliEffect</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="https://intellieffect.com" target="_blank" rel="noopener">IntelliEffect</a>
+        <a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">Community</a>
+        <a href="https://brxce.ai" target="_blank" rel="noopener">brxce.ai</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══ CASE DATA ═══
+const cases = [
+  {
+    id: 'piano',
+    category: 'education',
+    tags: ['교육', '피아노', '콘텐츠', 'SNS', '마케팅', '키즈'],
+    title: 'AI 에이전트가 운영하는 피아노 교육',
+    stat: '팔로워 1,282명 · 레슨 신청 22명',
+    thumb: 'case-piano-thumb.jpg',
+    link: 'case-piano.html'
+  },
+  {
+    id: 'sports',
+    category: 'sports',
+    tags: ['스포츠', '테크', '운동', '피트니스', '데이터'],
+    title: '준비 중',
+    stat: '',
+    thumb: 'case-sports-thumb.jpg',
+    link: 'case-sports.html'
+  },
+  {
+    id: 'food',
+    category: 'food',
+    tags: ['식품', '요식업', 'F&B', '레스토랑', '푸드'],
+    title: '준비 중',
+    stat: '',
+    thumb: null,
+    link: null
+  }
+];
+
+// ═══ RENDER ═══
+const grid = document.getElementById('caseGrid');
+const empty = document.getElementById('emptyState');
+let activeFilter = 'all';
+let searchQuery = '';
+
+function renderCases() {
+  let filtered = cases;
+
+  if (activeFilter !== 'all') {
+    filtered = filtered.filter(c => c.category === activeFilter);
+  }
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(c =>
+      c.title.toLowerCase().includes(q) ||
+      c.category.toLowerCase().includes(q) ||
+      c.tags.some(t => t.toLowerCase().includes(q))
+    );
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.classList.add('--show');
+    return;
+  }
+
+  empty.classList.remove('--show');
+  grid.innerHTML = filtered.map(c => {
+    if (!c.thumb) {
+      return `
+        <div class="case-card --placeholder">
+          <div class="case-card-body">
+            <p class="case-card-tag">${c.category}</p>
+            <h3 class="case-card-title">${c.title}</h3>
+            ${c.stat ? `<p class="case-card-stat">${c.stat}</p>` : ''}
+          </div>
+        </div>`;
+    }
+    const tag = c.link ? 'a' : 'div';
+    const href = c.link ? ` href="${c.link}"` : '';
+    return `
+      <${tag}${href} class="case-card">
+        <div class="case-card-img" style="background-image:url('${c.thumb}')"></div>
+        <div class="case-card-overlay"></div>
+        <div class="case-card-body">
+          <p class="case-card-tag">${c.category}</p>
+          <h3 class="case-card-title">${c.title}</h3>
+          ${c.stat ? `<p class="case-card-stat">${c.stat}</p>` : ''}
+        </div>
+      </${tag}>`;
+  }).join('');
+}
+
+// ═══ FILTER ═══
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('--active'));
+  btn.classList.add('--active');
+  activeFilter = btn.dataset.filter;
+  renderCases();
+});
+
+// ═══ SEARCH ═══
+let debounce;
+document.getElementById('searchInput').addEventListener('input', e => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    searchQuery = e.target.value.trim();
+    // 검색 시 필터 전체로 리셋
+    if (searchQuery) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('--active'));
+      document.querySelector('[data-filter="all"]').classList.add('--active');
+      activeFilter = 'all';
+    }
+    renderCases();
+  }, 250);
+});
+
+function resetSearch() {
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  activeFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('--active'));
+  document.querySelector('[data-filter="all"]').classList.add('--active');
+  renderCases();
+}
+
+// ═══ INIT ═══
+renderCases();
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피아노 교육 × AI 에이전트 — AWC</title>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* case-piano: page-specific only */
+:root{--white:var(--c-white);--bg1:var(--c-bg1);--text:var(--c-text);--sub:var(--c-sub);--light:var(--c-light);--accent:var(--c-accent);--kr:var(--f-kr);--en:var(--f-en)}
+.wrap{max-width:var(--max-w-text)}
+.back{display:inline-flex;align-items:center;gap:var(--s-2);font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:var(--c-light);padding:var(--s-30) 0 var(--s-10);transition:color .15s}
+.back:hover{color:var(--c-text)}
+/* case-tag, case-title, case-meta, case-results, case-body, case-cta, case-footer → common.css */
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Back</a>
+  <div class="case-tag">Education · Piano</div>
+  <h1 class="case-title">음악치료 전공자가 AI 에이전트로 피아노 레슨 사업을 운영하는 법</h1>
+  <p class="case-meta">2026. 03. 29 · 키즈마인드피아노 × AWC</p>
+
+  <!-- 영상 자리 (16:9) -->
+  <div class="case-video" style="aspect-ratio:16/9;background:#F4F4F7;border-radius:10px;margin-bottom:32px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;border-radius:10px">
+      <source src="case-piano-video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="case-results">
+    <div class="cr-item"><div class="cr-val">1,282</div><div class="cr-label">쓰레드 팔로워</div></div>
+    <div class="cr-item"><div class="cr-val">361</div><div class="cr-label">최고 댓글 수</div></div>
+    <div class="cr-item"><div class="cr-val">22명</div><div class="cr-label">레슨 신청</div></div>
+    <div class="cr-item"><div class="cr-val">₩0</div><div class="cr-label">유료 광고비</div></div>
+  </div>
+
+  <div class="case-body">
+    <p>코딩을 모르는 음악치료 전공자가 에이전틱 워크플로우를 도입해 쓰레드 팔로워 1,282명, 역대 최고 글 댓글 361개, 3개월 만에 퍼스트레슨 신청 22명을 달성한 이야기입니다.</p>
+
+    <h2>어떤 사업인가요?</h2>
+    <p>키즈마인드피아노는 해외 거주 한국 초등학생 대상 온라인 피아노 레슨 사업입니다. 최지혜 대표님은 음악치료 전공, 온라인 피아노 레슨 7년차 베테랑이에요. 현재 대표 + 강사 2명 + 매니저 1명, 학생 36명 규모로 운영 중이고, 목표는 100명입니다.</p>
+
+    <h2>왜 AI 에이전트가 필요했나요?</h2>
+    <p>소규모 교육 사업의 전형적인 문제였어요. 대표 혼자서 수업, 학부모 관리, 마케팅을 전부 해야 했습니다.</p>
+    <p>특히 쓰레드 마케팅이 가장 힘들었어요. 글 하나 올리려면 아이디어부터 퇴고까지 상당한 시간이 걸리는데, 레슨하랴 학부모 상담하랴 시간이 없었거든요.</p>
+    <p><strong>마케팅은 생존의 문제인데, 정작 마케팅에 쓸 시간이 가장 부족한 역설적인 상황이었어요.</strong></p>
+
+    <h2>에이전틱 워크플로우를 어떻게 세팅했나요?</h2>
+
+    <h3>1. AI 에이전트 "키마핑" 탄생</h3>
+    <p>OpenClaw라는 오픈소스 플랫폼으로 개인 AI 에이전트를 만들었어요. 이름은 "키마핑". 텔레그램으로 연동해서 언제 어디서나 대화할 수 있게 했고요. 별도 개발이 필요 없었어요.</p>
+
+    <h3>2. 브랜드 보이스 학습</h3>
+    <p>그냥 "글 써줘"가 아니라, 스레드 10원칙, 히트 글 패턴, 키즈마인드피아노만의 브랜드 보이스를 에이전트에게 직접 교육했어요. 초안은 AI가, 마무리는 대표님이. 이 방식 덕분에 대표님 고유의 목소리는 유지하면서 작업 시간은 대폭 줄었어요.</p>
+
+    <h3>3. 콘텐츠를 넘어 사업 전체로 확장</h3>
+    <ul>
+      <li><strong>쓰레드 마케팅</strong> — 초안 생성, 아이디어 제안, 히트 글 패턴 반영</li>
+      <li><strong>수업 분석</strong> — 학생 수업 데이터, 강사 수업 방식 분석을 에이전트가 보조</li>
+      <li><strong>일정 관리</strong> — Google Calendar 연동으로 36명 학생 레슨 일정 자동화</li>
+    </ul>
+
+    <h2>AWC(Bruce Choe)는 어떤 역할을 했나요?</h2>
+    <p>에이전틱 워크플로우의 전체 구조를 설계하고 초기 세팅을 담당했어요. 이후 운영은 대표님이 직접 해요. 텔레그램에서 자연어로 에이전트와 대화하면서요. 코딩 지식? 필요 없어요.</p>
+
+    <h2>3개월 만에 뭐가 달라졌나요?</h2>
+    <p>가장 큰 변화는 "혼자 다 해야 한다"는 부담에서 벗어난 거예요. 콘텐츠는 키마핑이 초안을 만들고 대표님이 다듬으니까, 양도 늘고 일관성도 올라갔어요.</p>
+
+    <blockquote>
+      "학생 수업 분석, 선생님 수업 방식 분석까지 가능하고, 마케팅으로도 든든한 지원을 받고 있어서 아주 만족합니다."
+      <cite>— 키즈마인드피아노 대표 최지혜</cite>
+    </blockquote>
+  </div>
+
+  <div class="case-cta">
+    <h3>비슷한 고민이 있으신가요?</h3>
+    <p>에이전틱 워크플로우 도입에 대해 부담 없이 물어보세요.</p>
+    <a href="mailto:bruce@intellieffect.com">도입 문의하기</a>
+  </div>
+
+  <div class="case-footer">
+    작성: Bruce Choe · <a href="https://brxce.ai">agenticworkflows.club</a>
+  </div>
+</div>
+</body>
+</html>

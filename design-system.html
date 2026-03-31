@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWC Design System</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* DS page-specific styles */
+body { background: var(--c-bg1) }
+.ds-wrap { max-width: 1100px; margin: 0 auto; padding: 80px var(--gutter) var(--s-20) }
+
+.ds-header { margin-bottom: var(--s-16) }
+.ds-header h1 { font-family: var(--f-en); font-size: var(--t-display); font-weight: var(--w-heavy); letter-spacing: -2px; margin-bottom: var(--s-4) }
+.ds-header p { font-size: var(--t-md); color: var(--c-sub); line-height: var(--lh-relaxed); max-width: 560px }
+.ds-header-meta { font-size: var(--t-xs); color: var(--c-light); margin-top: var(--s-2) }
+
+.ds-section { margin-bottom: var(--s-16) }
+.ds-section-title {
+  font-family: var(--f-en); font-size: var(--t-xl); font-weight: var(--w-heavy);
+  letter-spacing: -.5px; margin-bottom: var(--s-2); padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--c-bg2);
+}
+.ds-section-desc { font-size: var(--t-base); color: var(--c-sub); margin-bottom: var(--s-8); line-height: var(--lh-relaxed) }
+
+/* Color swatches */
+.ds-colors { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--s-3) }
+.ds-color {
+  background: var(--c-white); border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--shadow-xs); border: 1px solid var(--c-bg2);
+}
+.ds-color-swatch { height: 72px }
+.ds-color-info { padding: var(--s-3) var(--s-4) }
+.ds-color-name { font-family: var(--f-en); font-size: var(--t-sm); font-weight: var(--w-semi); margin-bottom: 2px }
+.ds-color-val { font-family: var(--f-en); font-size: var(--t-xs); color: var(--c-light) }
+
+/* Type scale */
+.ds-type-row {
+  display: flex; align-items: baseline; gap: var(--s-8);
+  padding: var(--s-4) 0; border-bottom: 1px solid var(--c-bg2);
+}
+.ds-type-meta {
+  min-width: 160px; font-family: var(--f-en); font-size: var(--t-xs);
+  color: var(--c-light); flex-shrink: 0;
+}
+.ds-type-sample { font-weight: var(--w-semi) }
+
+/* Spacing */
+.ds-spacing-grid { display: flex; flex-wrap: wrap; gap: var(--s-4); align-items: flex-end }
+.ds-space-item { display: flex; flex-direction: column; align-items: center; gap: var(--s-2) }
+.ds-space-box { background: var(--c-accent-20); border-radius: var(--r-sm); border: 1px solid var(--c-accent-10) }
+.ds-space-label { font-family: var(--f-en); font-size: var(--t-2xs); color: var(--c-light); text-align: center }
+
+/* Radius */
+.ds-radius-grid { display: flex; flex-wrap: wrap; gap: var(--s-6); align-items: center }
+.ds-radius-item { display: flex; flex-direction: column; align-items: center; gap: var(--s-2) }
+.ds-radius-box {
+  width: 64px; height: 64px; background: var(--c-white); border: 2px solid var(--c-accent);
+}
+.ds-radius-label { font-family: var(--f-en); font-size: var(--t-2xs); color: var(--c-light) }
+
+/* Shadows */
+.ds-shadow-grid { display: flex; flex-wrap: wrap; gap: var(--s-6) }
+.ds-shadow-item { display: flex; flex-direction: column; align-items: center; gap: var(--s-2) }
+.ds-shadow-box {
+  width: 100px; height: 72px; background: var(--c-white); border-radius: var(--r-lg);
+}
+.ds-shadow-label { font-family: var(--f-en); font-size: var(--t-2xs); color: var(--c-light) }
+
+/* Buttons showcase */
+.ds-btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; margin-bottom: var(--s-4) }
+
+/* Component cards */
+.ds-comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s-4) }
+.ds-comp-card {
+  background: var(--c-white); border-radius: var(--r-lg); padding: var(--s-6);
+  border: 1px solid var(--c-bg2);
+}
+.ds-comp-card h4 { font-family: var(--f-en); font-size: var(--t-md); font-weight: var(--w-bold); margin-bottom: var(--s-2) }
+.ds-comp-card p { font-size: var(--t-sm); color: var(--c-sub); line-height: var(--lh-normal); margin-bottom: var(--s-4) }
+.ds-comp-demo { background: var(--c-bg1); border-radius: var(--r-md); padding: var(--s-5); text-align: center }
+
+/* Token reference table */
+.ds-token-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm) }
+.ds-token-table th {
+  text-align: left; font-family: var(--f-en); font-weight: var(--w-semi);
+  color: var(--c-light); font-size: var(--t-xs); letter-spacing: 1px; text-transform: uppercase;
+  padding: var(--s-2) var(--s-3); border-bottom: 2px solid var(--c-bg2);
+}
+.ds-token-table td {
+  padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--c-bg2);
+  vertical-align: middle;
+}
+.ds-token-table code {
+  font-family: 'SF Mono', Consolas, monospace; font-size: var(--t-xs);
+  background: var(--c-bg1); padding: 2px 6px; border-radius: 4px; color: var(--c-accent);
+}
+
+@media (max-width: 768px) {
+  .ds-type-row { flex-direction: column; gap: var(--s-1) }
+  .ds-type-meta { min-width: auto }
+}
+</style>
+</head>
+<body>
+
+<div class="ds-wrap">
+
+<!-- HEADER -->
+<div class="ds-header">
+  <h1>AWC Design System</h1>
+  <p>모든 페이지의 스타일은 이 문서에서 시작합니다. tokens.css + common.css가 Single Source of Truth.</p>
+  <p class="ds-header-meta">Last updated: 2026-03-31 · <a href="index.html" style="color:var(--c-accent)">← Back to site</a></p>
+</div>
+
+<!-- ═══ COLOR ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Color</h2>
+  <p class="ds-section-desc">모든 색상은 <code>--c-*</code> 토큰으로 관리합니다. 하드코딩된 hex 값을 직접 사용하지 마세요.</p>
+
+  <h3 style="font-size:var(--t-md);font-weight:var(--w-bold);margin-bottom:var(--s-4)">Core</h3>
+  <div class="ds-colors" style="margin-bottom:var(--s-8)">
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#FFFFFF;border-bottom:1px solid var(--c-bg2)"></div><div class="ds-color-info"><p class="ds-color-name">White</p><p class="ds-color-val">--c-white · #FFFFFF</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#F4F4F7"></div><div class="ds-color-info"><p class="ds-color-name">BG 1</p><p class="ds-color-val">--c-bg1 · #F4F4F7</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#ECEDF2"></div><div class="ds-color-info"><p class="ds-color-name">BG 2</p><p class="ds-color-val">--c-bg2 · #ECEDF2</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#111111"></div><div class="ds-color-info"><p class="ds-color-name">Text</p><p class="ds-color-val">--c-text · #111111</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#555555"></div><div class="ds-color-info"><p class="ds-color-name">Sub</p><p class="ds-color-val">--c-sub · #555555</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#999999"></div><div class="ds-color-info"><p class="ds-color-name">Light</p><p class="ds-color-val">--c-light · #999999</p></div></div>
+  </div>
+
+  <h3 style="font-size:var(--t-md);font-weight:var(--w-bold);margin-bottom:var(--s-4)">Accent</h3>
+  <div class="ds-colors">
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#2B5CFF"></div><div class="ds-color-info"><p class="ds-color-name">Accent</p><p class="ds-color-val">--c-accent · #2B5CFF</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#2248CC"></div><div class="ds-color-info"><p class="ds-color-name">Accent Hover</p><p class="ds-color-val">--c-accent-h · #2248CC</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#6366F1"></div><div class="ds-color-info"><p class="ds-color-name">Indigo</p><p class="ds-color-val">--c-indigo · #6366F1</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#1C1C40"></div><div class="ds-color-info"><p class="ds-color-name">Card BG</p><p class="ds-color-val">--c-card-bg · #1C1C40</p></div></div>
+  </div>
+</section>
+
+<!-- ═══ TYPOGRAPHY ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Typography</h2>
+  <p class="ds-section-desc">한글은 Pretendard Variable, 영문은 Inter. 사이즈는 <code>--t-*</code> 토큰만 사용합니다.</p>
+
+  <div class="ds-type-row"><span class="ds-type-meta">--t-display<br>clamp(2.6rem, 5.5vw, 4.2rem)</span><span class="ds-type-sample" style="font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1">Display</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-3xl · 2.2rem</span><span class="ds-type-sample" style="font-size:2.2rem;font-weight:800">3XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-2xl · 1.8rem</span><span class="ds-type-sample" style="font-size:1.8rem;font-weight:800">2XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-xl · 1.4rem</span><span class="ds-type-sample" style="font-size:1.4rem;font-weight:800">XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-lg · 1.1rem</span><span class="ds-type-sample" style="font-size:1.1rem;font-weight:700">Large 서브 타이틀</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-md · 0.95rem</span><span class="ds-type-sample" style="font-size:0.95rem;font-weight:700">Medium 서브헤딩</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-base · 0.82rem</span><span class="ds-type-sample" style="font-size:0.82rem">Base 본문 텍스트 — 기본 사이즈</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-sm · 0.72rem</span><span class="ds-type-sample" style="font-size:0.72rem">Small 캡션, 버튼</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-xs · 0.65rem</span><span class="ds-type-sample" style="font-size:0.65rem">XS 태그, 메타 정보</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-2xs · 0.55rem</span><span class="ds-type-sample" style="font-size:0.55rem">2XS 마이크로 라벨</span></div>
+</section>
+
+<!-- ═══ SPACING ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Spacing</h2>
+  <p class="ds-section-desc">4px 기반 스케일. <code>--s-*</code> 토큰으로 일관된 여백을 유지합니다.</p>
+
+  <div class="ds-spacing-grid">
+    <div class="ds-space-item"><div class="ds-space-box" style="width:4px;height:4px"></div><p class="ds-space-label">--s-1<br>4px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:8px;height:8px"></div><p class="ds-space-label">--s-2<br>8px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:12px;height:12px"></div><p class="ds-space-label">--s-3<br>12px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:16px;height:16px"></div><p class="ds-space-label">--s-4<br>16px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:20px;height:20px"></div><p class="ds-space-label">--s-5<br>20px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:24px;height:24px"></div><p class="ds-space-label">--s-6<br>24px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:32px;height:32px"></div><p class="ds-space-label">--s-8<br>32px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:40px;height:40px"></div><p class="ds-space-label">--s-10<br>40px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:48px;height:48px"></div><p class="ds-space-label">--s-12<br>48px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:56px;height:56px"></div><p class="ds-space-label">--s-14<br>56px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:64px;height:64px"></div><p class="ds-space-label">--s-16<br>64px</p></div>
+    <div class="ds-space-item"><div class="ds-space-box" style="width:80px;height:80px"></div><p class="ds-space-label">--s-20<br>80px</p></div>
+  </div>
+</section>
+
+<!-- ═══ RADIUS ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Border Radius</h2>
+  <p class="ds-section-desc"><code>--r-*</code> 토큰으로 모서리 반경을 통일합니다.</p>
+
+  <div class="ds-radius-grid">
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:6px"></div><p class="ds-radius-label">--r-sm · 6px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:8px"></div><p class="ds-radius-label">--r-md · 8px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:12px"></div><p class="ds-radius-label">--r-lg · 12px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:16px"></div><p class="ds-radius-label">--r-xl · 16px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:50px"></div><p class="ds-radius-label">--r-pill · 50px</p></div>
+  </div>
+</section>
+
+<!-- ═══ SHADOWS ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Shadows</h2>
+  <p class="ds-section-desc"><code>--shadow-*</code> 5단계 그림자 스케일.</p>
+
+  <div class="ds-shadow-grid">
+    <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow:var(--shadow-xs)"></div><p class="ds-shadow-label">--shadow-xs</p></div>
+    <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow:var(--shadow-sm)"></div><p class="ds-shadow-label">--shadow-sm</p></div>
+    <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow:var(--shadow-md)"></div><p class="ds-shadow-label">--shadow-md</p></div>
+    <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow:var(--shadow-lg)"></div><p class="ds-shadow-label">--shadow-lg</p></div>
+    <div class="ds-shadow-item"><div class="ds-shadow-box" style="box-shadow:var(--shadow-xl)"></div><p class="ds-shadow-label">--shadow-xl</p></div>
+  </div>
+</section>
+
+<!-- ═══ BUTTONS ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Buttons</h2>
+  <p class="ds-section-desc"><code>.btn</code> + modifier 클래스. 모든 버튼은 <code>common.css</code>에서 정의됩니다.</p>
+
+  <div class="ds-btn-row">
+    <button class="btn btn--primary">Primary</button>
+    <button class="btn btn--sub">Sub</button>
+    <button class="btn btn--white" style="border:1px solid var(--c-bg2)">White</button>
+  </div>
+  <div class="ds-btn-row" style="background:var(--c-text);padding:var(--s-4);border-radius:var(--r-md)">
+    <button class="btn btn--white">White (on dark)</button>
+    <button class="btn btn--ghost">Ghost</button>
+  </div>
+</section>
+
+<!-- ═══ COMPONENTS ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Components</h2>
+  <p class="ds-section-desc">공유 컴포넌트 프리뷰. 각 컴포넌트는 <code>common.css</code>에서 정의됩니다.</p>
+
+  <div class="ds-comp-grid">
+    <div class="ds-comp-card">
+      <h4>Nav</h4>
+      <p>Pill 형태 고정 내비게이션. 블러 배경.</p>
+      <div class="ds-comp-demo">
+        <nav style="display:inline-flex;gap:2px;background:rgba(0,0,0,.05);padding:4px 6px;border-radius:40px">
+          <span style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:800;padding:6px 14px">AWC</span>
+          <span style="font-family:var(--f-en);font-size:var(--t-sm);padding:6px 14px;color:var(--c-sub)">Home</span>
+          <span style="font-family:var(--f-en);font-size:var(--t-sm);padding:6px 14px;background:var(--c-accent);color:white;border-radius:40px">Cases</span>
+        </nav>
+      </div>
+    </div>
+
+    <div class="ds-comp-card">
+      <h4>Section Header</h4>
+      <p><code>.sec-header</code> + <code>.sec-label</code> + <code>.sec-link</code></p>
+      <div class="ds-comp-demo" style="text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--f-en);font-size:var(--t-xl);font-weight:800">Cases</span>
+          <span style="font-family:var(--f-en);font-size:var(--t-sm);color:var(--c-accent)">View all →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-comp-card">
+      <h4>Page Hero</h4>
+      <p>서브 페이지 상단 영역. Back 링크 + 라벨 + 타이틀 + 설명.</p>
+      <div class="ds-comp-demo" style="text-align:left">
+        <p style="font-size:var(--t-sm);color:var(--c-light);margin-bottom:8px">← Back</p>
+        <p style="font-size:var(--t-xs);color:var(--c-accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">CASES</p>
+        <p style="font-size:var(--t-lg);font-weight:800">페이지 타이틀</p>
+      </div>
+    </div>
+
+    <div class="ds-comp-card">
+      <h4>Footer</h4>
+      <p>심플한 1줄 푸터. 카피라이트 + 링크.</p>
+      <div class="ds-comp-demo" style="text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:var(--t-xs);color:var(--c-light)">
+          <span>© 2026 AWC</span>
+          <span>IntelliEffect · Community</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-comp-card">
+      <h4>Case Card</h4>
+      <p>케이스 상세 페이지 공통 구조: tag, title, meta, results, body, CTA.</p>
+      <div class="ds-comp-demo" style="text-align:left">
+        <p style="font-size:var(--t-2xs);font-weight:700;color:var(--c-accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">EDUCATION</p>
+        <p style="font-weight:800;margin-bottom:4px">케이스 제목</p>
+        <p style="font-size:var(--t-xs);color:var(--c-light)">2026 · AWC</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOKEN REFERENCE ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Quick Reference</h2>
+  <p class="ds-section-desc">자주 쓰는 토큰 요약. 전체 토큰은 <code>tokens.css</code>를 참고하세요.</p>
+
+  <table class="ds-token-table">
+    <thead>
+      <tr><th>Category</th><th>Token</th><th>Value</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Color</td><td><code>--c-text</code></td><td>#111111</td><td>본문, 제목</td></tr>
+      <tr><td>Color</td><td><code>--c-sub</code></td><td>#555555</td><td>보조 텍스트</td></tr>
+      <tr><td>Color</td><td><code>--c-accent</code></td><td>#2B5CFF</td><td>강조, 링크, CTA</td></tr>
+      <tr><td>Type</td><td><code>--t-base</code></td><td>0.82rem</td><td>기본 본문</td></tr>
+      <tr><td>Type</td><td><code>--t-xl</code></td><td>1.4rem</td><td>섹션 타이틀</td></tr>
+      <tr><td>Space</td><td><code>--s-4</code></td><td>16px</td><td>기본 간격</td></tr>
+      <tr><td>Space</td><td><code>--s-8</code></td><td>32px</td><td>섹션 내부 간격</td></tr>
+      <tr><td>Radius</td><td><code>--r-lg</code></td><td>12px</td><td>카드, 배너</td></tr>
+      <tr><td>Shadow</td><td><code>--shadow-sm</code></td><td>0 2px 12px rgba(0,0,0,.04)</td><td>NAV, 카드 기본</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+</body>
+</html>

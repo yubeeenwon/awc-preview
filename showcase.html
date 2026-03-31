@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<title>AWC Design System — Showcase</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* ═══ Showcase-specific styles ═══ */
+.sc-divider{height:1px;background:var(--c-bg2);margin:var(--s-20) 0}
+.sc-label{font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-light);margin-bottom:var(--s-4)}
+
+/* ── Hero variation: left-aligned ── */
+.sc-hero{padding:160px 0 var(--s-20)}
+.sc-hero-tag{display:inline-flex;align-items:center;gap:var(--s-2);font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);color:var(--c-accent);background:var(--c-accent-6);padding:var(--s-2) var(--s-4);border-radius:var(--r-pill);margin-bottom:var(--s-12);border:1px solid var(--c-accent-10)}
+.sc-hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--c-accent)}
+.sc-hero-title{font-size:var(--t-display);font-weight:var(--w-heavy);line-height:var(--lh-tight);letter-spacing:-2px;margin-bottom:var(--s-6);max-width:680px;text-wrap:balance}
+.sc-hero-title em{font-style:normal;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sc-hero-desc{font-size:var(--t-md);color:var(--c-sub);line-height:var(--lh-relaxed);max-width:480px;margin-bottom:var(--s-10)}
+.sc-hero-actions{display:flex;gap:var(--s-3);flex-wrap:wrap}
+
+/* ── Feature grid ── */
+.sc-features{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-4)}
+.sc-feature{background:var(--c-white);border:1px solid var(--c-bg2);border-radius:var(--r-lg);padding:var(--s-8);transition:transform var(--ease-spring),box-shadow var(--ease-default)}
+.sc-feature:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.sc-feature-icon{width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;margin-bottom:var(--s-5);font-size:1.2rem}
+.sc-feature-icon.--blue{background:var(--c-accent-8)}
+.sc-feature-icon.--indigo{background:rgba(99,102,241,.08)}
+.sc-feature-icon.--green{background:rgba(16,185,129,.08)}
+.sc-feature h3{font-size:var(--t-md);font-weight:var(--w-bold);margin-bottom:var(--s-2)}
+.sc-feature p{font-size:var(--t-base);color:var(--c-sub);line-height:var(--lh-relaxed)}
+
+/* ── Stats bar ── */
+.sc-stats{display:flex;justify-content:space-between;background:var(--c-text);border-radius:var(--r-xl);padding:var(--s-10) var(--s-12);color:var(--c-white)}
+.sc-stat{text-align:center;flex:1}
+.sc-stat-num{font-family:var(--f-en);font-size:var(--t-3xl);font-weight:var(--w-heavy);letter-spacing:-1px;margin-bottom:var(--s-1);font-variant-numeric:tabular-nums}
+.sc-stat-label{font-size:var(--t-sm);color:rgba(255,255,255,.45);font-weight:var(--w-medium)}
+.sc-stat+.sc-stat{border-left:1px solid rgba(255,255,255,.1)}
+
+/* ── Testimonial ── */
+.sc-testimonial{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-8);align-items:center}
+.sc-testimonial-quote{font-size:var(--t-xl);font-weight:var(--w-bold);line-height:var(--lh-snug);letter-spacing:-.5px}
+.sc-testimonial-quote em{font-style:normal;color:var(--c-accent)}
+.sc-testimonial-meta{display:flex;align-items:center;gap:var(--s-4);margin-top:var(--s-6)}
+.sc-testimonial-avatar{width:48px;height:48px;border-radius:50%;background:var(--c-bg2);display:flex;align-items:center;justify-content:center;font-size:var(--t-lg);font-weight:var(--w-heavy);color:var(--c-light)}
+.sc-testimonial-info p:first-child{font-weight:var(--w-semi);font-size:var(--t-base)}
+.sc-testimonial-info p:last-child{font-size:var(--t-sm);color:var(--c-light)}
+.sc-testimonial-card{background:var(--c-bg1);border-radius:var(--r-xl);padding:var(--s-10);display:flex;flex-direction:column;gap:var(--s-4)}
+.sc-tcard-row{display:flex;align-items:center;gap:var(--s-3)}
+.sc-tcard-bar{height:8px;border-radius:var(--s-1);flex:1}
+.sc-tcard-label{font-family:var(--f-en);font-size:var(--t-xs);color:var(--c-light);min-width:80px}
+.sc-tcard-val{font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);min-width:48px;text-align:right}
+
+/* ── Card grid ── */
+.sc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-4)}
+.sc-card{border-radius:var(--r-lg);overflow:hidden;background:var(--c-white);border:1px solid var(--c-bg2);transition:transform var(--ease-spring),box-shadow var(--ease-default)}
+.sc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.sc-card-img{height:200px;position:relative;overflow:hidden}
+.sc-card-img-bg{position:absolute;inset:0}
+.sc-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 60%)}
+.sc-card-img-tag{position:absolute;top:var(--s-4);left:var(--s-4);font-family:var(--f-en);font-size:var(--t-2xs);font-weight:var(--w-bold);letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);color:white;padding:var(--s-1) var(--s-3);border-radius:var(--r-sm)}
+.sc-card-body{padding:var(--s-6)}
+.sc-card-body h3{font-size:var(--t-md);font-weight:var(--w-bold);margin-bottom:var(--s-2)}
+.sc-card-body p{font-size:var(--t-base);color:var(--c-sub);line-height:var(--lh-normal)}
+.sc-card-footer{padding:0 var(--s-6) var(--s-6);display:flex;justify-content:space-between;align-items:center}
+.sc-card-stat{font-family:var(--f-en);font-size:var(--t-xs);color:var(--c-light)}
+.sc-card-link{font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:var(--c-accent)}
+
+/* ── CTA section ── */
+.sc-cta{background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:var(--r-xl);padding:var(--s-20) var(--s-12);text-align:center;color:var(--c-white);position:relative;overflow:hidden}
+.sc-cta::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.06)}
+.sc-cta::after{content:'';position:absolute;bottom:-30%;left:-10%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.04)}
+.sc-cta>*{position:relative;z-index:1}
+.sc-cta h2{font-size:var(--t-2xl);font-weight:var(--w-heavy);margin-bottom:var(--s-4);letter-spacing:-1px}
+.sc-cta p{font-size:var(--t-md);color:rgba(255,255,255,.65);margin-bottom:var(--s-8);max-width:440px;margin-left:auto;margin-right:auto;line-height:var(--lh-relaxed)}
+.sc-cta .btn{font-size:var(--t-base);padding:var(--s-4) var(--s-8)}
+
+/* ── FAQ / Accordion ── */
+.sc-faq{display:flex;flex-direction:column;gap:var(--s-2)}
+.sc-faq-item{background:var(--c-white);border:1px solid var(--c-bg2);border-radius:var(--r-lg);overflow:hidden}
+.sc-faq-q{display:flex;justify-content:space-between;align-items:center;padding:var(--s-5) var(--s-6);cursor:pointer;font-weight:var(--w-semi);font-size:var(--t-base);transition:background var(--ease-default)}
+.sc-faq-q:hover{background:var(--c-bg1)}
+.sc-faq-q span{font-size:var(--t-lg);color:var(--c-light);transition:transform var(--ease-default)}
+.sc-faq-item.--open .sc-faq-q span{transform:rotate(45deg)}
+.sc-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.sc-faq-item.--open .sc-faq-a{max-height:200px}
+.sc-faq-a-inner{padding:0 var(--s-6) var(--s-5);font-size:var(--t-base);color:var(--c-sub);line-height:var(--lh-relaxed)}
+
+/* ── Pricing table ── */
+.sc-pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-4)}
+.sc-plan{background:var(--c-white);border:1px solid var(--c-bg2);border-radius:var(--r-xl);padding:var(--s-8);display:flex;flex-direction:column;transition:transform var(--ease-spring),box-shadow var(--ease-default)}
+.sc-plan:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.sc-plan.--featured{border-color:var(--c-accent);box-shadow:var(--shadow-md);position:relative}
+.sc-plan.--featured::before{content:'추천';position:absolute;top:calc(var(--s-4) * -1);left:50%;transform:translateX(-50%);font-family:var(--f-en);font-size:var(--t-2xs);font-weight:var(--w-bold);letter-spacing:1px;text-transform:uppercase;background:var(--c-accent);color:white;padding:var(--s-1) var(--s-4);border-radius:var(--r-pill)}
+.sc-plan-name{font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:var(--c-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:var(--s-3)}
+.sc-plan-price{font-family:var(--f-en);font-size:var(--t-3xl);font-weight:var(--w-heavy);letter-spacing:-1px;margin-bottom:var(--s-1)}
+.sc-plan-period{font-size:var(--t-sm);color:var(--c-light);margin-bottom:var(--s-6)}
+.sc-plan-features{list-style:none;display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-8);flex:1}
+.sc-plan-features li{font-size:var(--t-base);color:var(--c-sub);display:flex;align-items:center;gap:var(--s-2)}
+.sc-plan-features li::before{content:'✓';color:var(--c-accent);font-weight:var(--w-bold);font-size:var(--t-sm)}
+.sc-plan .btn{width:100%;justify-content:center}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .sc-features,.sc-cards,.sc-pricing{grid-template-columns:1fr 1fr}
+  .sc-stats{flex-direction:column;gap:var(--s-6)}
+  .sc-stat+.sc-stat{border-left:none;border-top:1px solid rgba(255,255,255,.1);padding-top:var(--s-6)}
+  .sc-testimonial{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .sc-features,.sc-cards,.sc-pricing{grid-template-columns:1fr}
+  .sc-hero-title{font-size:clamp(2rem,8vw,2.8rem)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-item nav-logo" href="index.html">AWC</a>
+  <a class="nav-item" href="index.html">Home</a>
+  <a class="nav-item" href="cases.html">Cases</a>
+  <a class="nav-item" href="index.html#workflow">Workflow</a>
+  <a class="nav-item" href="design-system.html">DS</a>
+</nav>
+
+<main>
+
+<!-- ═══ SHOWCASE HERO ═══ -->
+<section class="sc-hero">
+  <div class="wrap">
+    <div class="sc-hero-tag"><span class="sc-hero-tag-dot"></span>Showcase</div>
+    <h1 class="sc-hero-title">디자인 시스템이<br>실제로 <em>작동하는</em> 방법</h1>
+    <p class="sc-hero-desc">tokens.css와 common.css만으로 만든 페이지입니다. 하드코딩된 색상, 사이즈, 여백이 하나도 없습니다.</p>
+    <div class="sc-hero-actions">
+      <button class="btn btn--primary">시작하기</button>
+      <button class="btn btn--sub">자세히 보기</button>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ FEATURES ═══ -->
+<section style="padding:var(--s-20) 0">
+  <div class="wrap">
+    <p class="sc-label">Features</p>
+    <div class="sec-header"><h2 class="sec-label">핵심 기능</h2></div>
+    <div class="sc-features">
+      <div class="sc-feature">
+        <div class="sc-feature-icon --blue">🎯</div>
+        <h3>목표 설정</h3>
+        <p>에이전트에게 목표를 주면, 스스로 최적 경로를 계획하고 실행합니다.</p>
+      </div>
+      <div class="sc-feature">
+        <div class="sc-feature-icon --indigo">⚡</div>
+        <h3>실시간 실행</h3>
+        <p>24시간 멈추지 않고 업무를 처리합니다. 사람이 자는 동안에도.</p>
+      </div>
+      <div class="sc-feature">
+        <div class="sc-feature-icon --green">🔄</div>
+        <h3>자기 개선</h3>
+        <p>결과를 검토하고, 더 나은 방법을 찾아 스스로 최적화합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section style="padding:0 0 var(--s-20)">
+  <div class="wrap">
+    <div class="sc-stats">
+      <div class="sc-stat"><div class="sc-stat-num">1,282</div><div class="sc-stat-label">팔로워</div></div>
+      <div class="sc-stat"><div class="sc-stat-num">22</div><div class="sc-stat-label">레슨 신청</div></div>
+      <div class="sc-stat"><div class="sc-stat-num">₩0</div><div class="sc-stat-label">광고비</div></div>
+      <div class="sc-stat"><div class="sc-stat-num">361</div><div class="sc-stat-label">최고 댓글</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ TESTIMONIAL ═══ -->
+<section style="padding:var(--s-20) 0">
+  <div class="wrap">
+    <p class="sc-label">Testimonial</p>
+    <div class="sc-testimonial">
+      <div>
+        <p class="sc-testimonial-quote">"마케팅은 생존의 문제인데, 정작 마케팅에 쓸 시간이 <em>가장 부족</em>했어요."</p>
+        <div class="sc-testimonial-meta">
+          <div class="sc-testimonial-avatar">J</div>
+          <div class="sc-testimonial-info">
+            <p>최지혜</p>
+            <p>키즈마인드피아노 대표</p>
+          </div>
+        </div>
+      </div>
+      <div class="sc-testimonial-card">
+        <div class="sc-tcard-row">
+          <span class="sc-tcard-label">콘텐츠 생산</span>
+          <div class="sc-tcard-bar" style="background:linear-gradient(90deg,var(--c-accent),var(--c-indigo));width:85%"></div>
+          <span class="sc-tcard-val">+340%</span>
+        </div>
+        <div class="sc-tcard-row">
+          <span class="sc-tcard-label">응답 시간</span>
+          <div class="sc-tcard-bar" style="background:linear-gradient(90deg,#10B981,#34D399);width:70%"></div>
+          <span class="sc-tcard-val">-75%</span>
+        </div>
+        <div class="sc-tcard-row">
+          <span class="sc-tcard-label">팔로워 증가</span>
+          <div class="sc-tcard-bar" style="background:linear-gradient(90deg,#F59E0B,#FBBF24);width:92%"></div>
+          <span class="sc-tcard-val">1,282</span>
+        </div>
+        <div class="sc-tcard-row">
+          <span class="sc-tcard-label">광고비</span>
+          <div class="sc-tcard-bar" style="background:var(--c-bg2);width:5%"></div>
+          <span class="sc-tcard-val" style="color:var(--c-accent)">₩0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ CARD GRID ═══ -->
+<section style="padding:var(--s-20) 0">
+  <div class="wrap">
+    <p class="sc-label">Cases</p>
+    <div class="sec-header"><h2 class="sec-label">실전 사례</h2><a href="cases.html" class="sec-link">View all →</a></div>
+    <div class="sc-cards">
+      <div class="sc-card">
+        <div class="sc-card-img"><div class="sc-card-img-bg" style="background:linear-gradient(135deg,#D0DFFF,#8FAAEE)"></div><div class="sc-card-img-overlay"></div><span class="sc-card-img-tag">Education</span></div>
+        <div class="sc-card-body"><h3>피아노 교육 × AI</h3><p>음악치료 전공자가 AI 에이전트로 레슨 사업을 운영하는 법</p></div>
+        <div class="sc-card-footer"><span class="sc-card-stat">팔로워 1,282명</span><span class="sc-card-link">Read →</span></div>
+      </div>
+      <div class="sc-card">
+        <div class="sc-card-img"><div class="sc-card-img-bg" style="background:linear-gradient(135deg,#C7D2FE,#A5B4FC)"></div><div class="sc-card-img-overlay"></div><span class="sc-card-img-tag">Sports Tech</span></div>
+        <div class="sc-card-body"><h3>스포츠 기기 × AI</h3><p>태블릿으로 스포츠 기기의 무게를 AI가 제어하는 구조</p></div>
+        <div class="sc-card-footer"><span class="sc-card-stat">준비 중</span><span class="sc-card-link">Read →</span></div>
+      </div>
+      <div class="sc-card">
+        <div class="sc-card-img"><div class="sc-card-img-bg" style="background:linear-gradient(135deg,#FDE68A,#FCA5A5)"></div><div class="sc-card-img-overlay"></div><span class="sc-card-img-tag">Food</span></div>
+        <div class="sc-card-body"><h3>F&B 업종</h3><p>에이전틱 워크플로우가 요식업에 적용되는 사례</p></div>
+        <div class="sc-card-footer"><span class="sc-card-stat">준비 중</span><span class="sc-card-link">Read →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ FAQ ═══ -->
+<section style="padding:var(--s-20) 0">
+  <div class="wrap">
+    <p class="sc-label">FAQ</p>
+    <div class="sec-header"><h2 class="sec-label">자주 묻는 질문</h2></div>
+    <div class="sc-faq" style="max-width:720px">
+      <div class="sc-faq-item --open">
+        <div class="sc-faq-q" onclick="this.parentElement.classList.toggle('--open')">에이전틱 워크플로우가 뭔가요?<span>+</span></div>
+        <div class="sc-faq-a"><div class="sc-faq-a-inner">AI 에이전트가 목표를 받아서 스스로 계획하고 도구를 활용해 업무를 실행하는 방식입니다. 기존 자동화와 달리 상황에 따라 유연하게 판단합니다.</div></div>
+      </div>
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="this.parentElement.classList.toggle('--open')">코딩을 몰라도 되나요?<span>+</span></div>
+        <div class="sc-faq-a"><div class="sc-faq-a-inner">네, 전혀 몰라도 됩니다. 피아노 사례의 대표님은 음악치료 전공자예요. 초기 세팅 후 텔레그램에서 자연어로 운영합니다.</div></div>
+      </div>
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="this.parentElement.classList.toggle('--open')">비용은 얼마나 드나요?<span>+</span></div>
+        <div class="sc-faq-a"><div class="sc-faq-a-inner">규모에 따라 다릅니다. 개인은 도입 50~150만원, 소규모 사업은 300~1,000만원 수준입니다. 월 운영비는 별도.</div></div>
+      </div>
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="this.parentElement.classList.toggle('--open')">어떤 업종에 적용할 수 있나요?<span>+</span></div>
+        <div class="sc-faq-a"><div class="sc-faq-a-inner">반복 업무가 있는 모든 분야에 적용 가능합니다. 현재 교육, 스포츠, 식품 등의 사례가 진행 중입니다.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ PRICING ═══ -->
+<section style="padding:var(--s-20) 0">
+  <div class="wrap">
+    <p class="sc-label">Pricing</p>
+    <div class="sec-header" style="margin-bottom:var(--s-12)"><h2 class="sec-label">가격 안내</h2></div>
+    <div class="sc-pricing">
+      <div class="sc-plan">
+        <p class="sc-plan-name">Individual</p>
+        <p class="sc-plan-price">₩50만~</p>
+        <p class="sc-plan-period">도입 비용 / 1회</p>
+        <ul class="sc-plan-features">
+          <li>업무 흐름 분석</li>
+          <li>에이전트 1개 세팅</li>
+          <li>2주 온보딩</li>
+          <li>텔레그램 연동</li>
+        </ul>
+        <button class="btn btn--sub">문의하기</button>
+      </div>
+      <div class="sc-plan --featured">
+        <p class="sc-plan-name">Business</p>
+        <p class="sc-plan-price">₩300만~</p>
+        <p class="sc-plan-period">도입 프로젝트 / 1회</p>
+        <ul class="sc-plan-features">
+          <li>전체 프로세스 분석</li>
+          <li>멀티 에이전트 구축</li>
+          <li>기존 시스템 연동</li>
+          <li>1개월 안정화</li>
+          <li>월 리테이너 옵션</li>
+        </ul>
+        <button class="btn btn--primary">문의하기</button>
+      </div>
+      <div class="sc-plan">
+        <p class="sc-plan-name">Enterprise</p>
+        <p class="sc-plan-price">₩2,000만~</p>
+        <p class="sc-plan-period">연간 파트너십</p>
+        <ul class="sc-plan-features">
+          <li>전사 AX 전환 설계</li>
+          <li>전담 PM 배정</li>
+          <li>무제한 에이전트</li>
+          <li>SLA 보장</li>
+          <li>월간 리포트</li>
+        </ul>
+        <button class="btn btn--sub">상담 신청</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="sc-divider"></div></div>
+
+<!-- ═══ CTA ═══ -->
+<section style="padding:0 0 var(--s-20)">
+  <div class="wrap">
+    <div class="sc-cta">
+      <h2>Agent가 일하는 시대,<br>함께 시작할까요?</h2>
+      <p>현재 업무 흐름을 듣고, 어디에 Agent가 들어갈 수 있는지 함께 살펴봅니다.</p>
+      <a href="mailto:bruce@intellieffect.com" class="btn btn--white" style="display:inline-flex">문의하기 →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 AWC · Bruce Choe · IntelliEffect</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="https://intellieffect.com" target="_blank" rel="noopener">IntelliEffect</a>
+        <a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">Community</a>
+        <a href="design-system.html">Design System</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
