@@ -157,9 +157,9 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
 .sec-link {
   font-family: var(--f-en); font-size: var(--t-sm); font-weight: 450;
   color: var(--c-accent); display: inline-flex; align-items: center; gap: var(--s-2);
-  transition: gap .15s; letter-spacing: -0.01em;
+  transition: transform .15s; letter-spacing: -0.01em;
 }
-.sec-link:hover { gap: var(--s-3) }
+.sec-link:hover { transform: translateX(2px) }
 
 /* ─── Page Hero (sub-pages) ─── */
 .page-hero { padding: 140px 0 var(--s-12); text-align: center }
