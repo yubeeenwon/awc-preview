@@ -260,8 +260,8 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
 }
 
 /* ─── Responsive ─── */
-@media (max-width: 834px) {
-  /* Nav → hamburger on mobile */
+@media (max-width: 600px) {
+  /* Nav → hamburger on phone only */
   .nav-pill { display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; }
   .nav-burger { display: flex }
   .nav-overlay { display: flex }
@@ -287,7 +287,7 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
   .footer-inner { flex-direction: column; gap: var(--s-3); text-align: center }
   .footer-links { justify-content: center }
 }
-@media (min-width: 835px) {
+@media (min-width: 601px) {
   .nav-burger { display: none !important }
   .nav-overlay { display: none !important; visibility: hidden !important }
   .nav-backdrop { display: none !important; opacity: 0 !important }
