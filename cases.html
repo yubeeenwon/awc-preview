@@ -48,23 +48,24 @@
 /* ═══ EMPTY STATE ═══ */
 .empty-state{display:none;text-align:center;padding:80px 20px}
 .empty-state.--show{display:block}
-.empty-icon{font-size:2.4rem;margin-bottom:16px;opacity:.4}
+.empty-icon{width:48px;height:48px;background:var(--c-bg2);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--c-light)}
 .empty-title{font-size:.95rem;font-weight:700;margin-bottom:8px}
 .empty-desc{font-size:.78rem;color:var(--c-sub);margin-bottom:24px}
 
 /* ═══ CTA BANNER ═══ */
-.cta-banner{background:var(--c-text);border-radius:16px;padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin-bottom:80px}
-.cta-banner-text h2{font-size:1.2rem;font-weight:800;color:var(--c-bg2);margin-bottom:8px}
-.cta-banner-text p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6}
-.cta-btn{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;color:var(--c-text);background:var(--c-white);padding:14px 32px;border-radius:8px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
-.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.12)}
+.cta{padding:clamp(60px,8vw,100px) 0}
+.cta-block{background:#4A6CF7;border-radius:var(--r-lg);padding:clamp(40px,5vw,72px) clamp(32px,4vw,64px);display:flex;justify-content:space-between;align-items:center;color:var(--c-white);gap:40px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-block::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);pointer-events:none}
+.cta-title{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:var(--w-bold);line-height:1.4;letter-spacing:-0.02em;margin-bottom:10px;text-wrap:balance}
+.cta-sub{font-size:var(--t-sm);color:rgba(255,255,255,.65);font-weight:var(--w-regular);letter-spacing:-0.01em}
+.cta-btns{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
 
 /* footer → common.css */
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){
   .case-grid{grid-template-columns:1fr 1fr}
-  .cta-banner{flex-direction:column;align-items:flex-start;padding:40px 32px}
+  .cta-block{flex-direction:column;align-items:flex-start;padding:48px 32px}
 }
 @media(max-width:600px){
   .wrap{padding:0 20px}
@@ -130,21 +131,27 @@
 <section class="wrap">
   <div class="case-grid" id="caseGrid"></div>
   <div class="empty-state" id="emptyState">
-    <div class="empty-icon">🔍</div>
+    <div class="empty-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
     <p class="empty-title">검색 결과가 없습니다</p>
     <p class="empty-desc">다른 키워드로 검색하거나, 필터를 변경해 보세요.</p>
-    <button class="cta-btn" onclick="resetSearch()" style="margin:0 auto">전체 보기</button>
+    <button class="btn btn--primary" onclick="resetSearch()">전체 보기</button>
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section class="wrap">
-  <div class="cta-banner">
-    <div class="cta-banner-text">
-      <h2>우리 업무에도 Agent를 투입할 수 있을까?</h2>
-      <p>어떤 일을 하고 계신지 들려주세요. 함께 살펴봅니다.</p>
+<!-- CTA -->
+<section class="cta" aria-label="도입 문의">
+  <div class="wrap">
+    <div class="cta-block">
+      <div>
+        <h2 class="cta-title">우리 업무에도 Agent를 투입할 수 있을까?</h2>
+        <p class="cta-sub">현재 업무 흐름을 듣고, 어디에 Agent가 들어갈 수 있는지 함께 살펴봅니다.</p>
+      </div>
+      <div class="cta-btns">
+        <a href="mailto:bruce@intellieffect.com?subject=에이전틱 워크플로우 도입 문의" class="btn btn--white">Contact <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg></a>
+      </div>
     </div>
-    <a href="mailto:bruce@intellieffect.com?subject=에이전틱 워크플로우 도입 문의" class="cta-btn">문의하기 →</a>
   </div>
 </section>
 </main>
