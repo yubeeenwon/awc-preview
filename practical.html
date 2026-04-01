@@ -62,8 +62,8 @@
     <button class="nav-item nav-cta" onclick="location.href='mailto:bruce@intellieffect.com'" type="button">Contact <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg></button>
   </div>
   <button class="nav-burger" id="navBurger" type="button" aria-label="메뉴 열기" onclick="toggleMobileMenu()">
-    <svg class="burger-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-    <svg class="burger-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-5.5 5.5"/><path d="M6 18l5.5-5.5"/><path d="M6 6l5.5 5.5"/><path d="M18 18l-5.5-5.5"/></svg>
+    <svg class="burger-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    <svg class="burger-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-5.5 5.5"/><path d="M6 18l5.5-5.5"/><path d="M6 6l5.5 5.5"/><path d="M18 18l-5.5-5.5"/></svg>
   </button>
 </nav>
 <div class="nav-backdrop" id="navBackdrop" onclick="closeMobileMenu()"></div>
@@ -118,8 +118,8 @@
 <footer class="footer"><div class="wrap"><div class="footer-inner"><span>© 2026 AWC · Bruce Choe · IntelliEffect</span><nav class="footer-links" aria-label="Footer links"><a href="https://intellieffect.com" target="_blank" rel="noopener">IntelliEffect</a><a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">Community</a><a href="https://brxce.ai" target="_blank" rel="noopener">brxce.ai</a></nav></div></div></footer>
 
 <script>
-function toggleMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');const isOpen=b.classList.toggle('open');o.classList.toggle('open',isOpen);d.classList.toggle('open',isOpen);document.body.style.overflow=isOpen?'hidden':'';}
-function closeMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');b.classList.remove('open');o.classList.remove('open');d.classList.remove('open');document.body.style.overflow='';}
+function toggleMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');const isOpen=b.classList.toggle('open');o.classList.toggle('open',isOpen);d.classList.toggle('open',isOpen);}
+function closeMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');b.classList.remove('open');o.classList.remove('open');d.classList.remove('open');}
 </script>
 </body>
 </html>
