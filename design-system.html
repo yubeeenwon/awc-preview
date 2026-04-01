@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="common.css">
 <style>
 /* DS page-specific styles */
-body { background: var(--c-bg1) }
+body { background: var(--c-bg2) }
 .ds-wrap { max-width: 1100px; margin: 0 auto; padding: 80px var(--gutter) var(--s-20) }
 
 .ds-header { margin-bottom: var(--s-16) }
@@ -82,7 +82,7 @@ body { background: var(--c-bg1) }
 }
 .ds-comp-card h4 { font-family: var(--f-en); font-size: var(--t-md); font-weight: var(--w-bold); margin-bottom: var(--s-2) }
 .ds-comp-card p { font-size: var(--t-sm); color: var(--c-sub); line-height: var(--lh-normal); margin-bottom: var(--s-4) }
-.ds-comp-demo { background: var(--c-bg1); border-radius: var(--r-md); padding: var(--s-5); text-align: center }
+.ds-comp-demo { background: var(--c-bg2); border-radius: var(--r-md); padding: var(--s-5); text-align: center }
 
 /* Token reference table */
 .ds-token-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm) }
@@ -97,8 +97,42 @@ body { background: var(--c-bg1) }
 }
 .ds-token-table code {
   font-family: 'SF Mono', Consolas, monospace; font-size: var(--t-xs);
-  background: var(--c-bg1); padding: 2px 6px; border-radius: 4px; color: var(--c-accent);
+  background: var(--c-bg2); padding: 2px 6px; border-radius: 4px; color: var(--c-accent);
 }
+
+/* Icon cells */
+.ico-cell {
+  position: relative; border-radius: var(--r-md);
+  padding: 22px 8px 14px; text-align: center; cursor: default;
+  background: var(--c-white);
+  transition: transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s;
+}
+.ico-cell::before {
+  content: ''; position: absolute; inset: 0; border-radius: var(--r-md);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--c-bg2), var(--c-bg2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: background .3s;
+}
+.ico-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(43,92,255,.1);
+}
+.ico-cell:hover::before {
+  background: linear-gradient(135deg, var(--c-accent), var(--c-indigo));
+}
+.ico-cell svg { margin-bottom: 10px; color: var(--c-text); transition: color .2s, filter .2s }
+.ico-cell:hover svg {
+  color: var(--c-accent);
+  filter: drop-shadow(0 0 6px rgba(43,92,255,.3));
+}
+.ico-cell span {
+  display: block; font-family: var(--f-en); font-size: 0.58rem;
+  color: var(--c-light); letter-spacing: .02em; font-weight: var(--w-medium);
+  transition: color .2s;
+}
+.ico-cell:hover span { color: var(--c-accent) }
 
 @media (max-width: 768px) {
   .ds-type-row { flex-direction: column; gap: var(--s-1) }
@@ -124,10 +158,9 @@ body { background: var(--c-bg1) }
 
   <h3 style="font-size:var(--t-md);font-weight:var(--w-bold);margin-bottom:var(--s-4)">Core</h3>
   <div class="ds-colors" style="margin-bottom:var(--s-8)">
-    <div class="ds-color"><div class="ds-color-swatch" style="background:#FFFFFF;border-bottom:1px solid var(--c-bg2)"></div><div class="ds-color-info"><p class="ds-color-name">White</p><p class="ds-color-val">--c-white · #FFFFFF</p></div></div>
-    <div class="ds-color"><div class="ds-color-swatch" style="background:#F4F4F7"></div><div class="ds-color-info"><p class="ds-color-name">BG 1</p><p class="ds-color-val">--c-bg1 · #F4F4F7</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#f2f2f2;border-bottom:1px solid var(--c-bg2)"></div><div class="ds-color-info"><p class="ds-color-name">White</p><p class="ds-color-val">--c-white · #f2f2f2</p></div></div>
     <div class="ds-color"><div class="ds-color-swatch" style="background:#ECEDF2"></div><div class="ds-color-info"><p class="ds-color-name">BG 2</p><p class="ds-color-val">--c-bg2 · #ECEDF2</p></div></div>
-    <div class="ds-color"><div class="ds-color-swatch" style="background:#111111"></div><div class="ds-color-info"><p class="ds-color-name">Text</p><p class="ds-color-val">--c-text · #111111</p></div></div>
+    <div class="ds-color"><div class="ds-color-swatch" style="background:#191919"></div><div class="ds-color-info"><p class="ds-color-name">Text</p><p class="ds-color-val">--c-text · #191919</p></div></div>
     <div class="ds-color"><div class="ds-color-swatch" style="background:#555555"></div><div class="ds-color-info"><p class="ds-color-name">Sub</p><p class="ds-color-val">--c-sub · #555555</p></div></div>
     <div class="ds-color"><div class="ds-color-swatch" style="background:#999999"></div><div class="ds-color-info"><p class="ds-color-name">Light</p><p class="ds-color-val">--c-light · #999999</p></div></div>
   </div>
@@ -146,16 +179,16 @@ body { background: var(--c-bg1) }
   <h2 class="ds-section-title">Typography</h2>
   <p class="ds-section-desc">한글은 Pretendard Variable, 영문은 Inter. 사이즈는 <code>--t-*</code> 토큰만 사용합니다.</p>
 
-  <div class="ds-type-row"><span class="ds-type-meta">--t-display<br>clamp(2.6rem, 5.5vw, 4.2rem)</span><span class="ds-type-sample" style="font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1">Display</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-3xl · 2.2rem</span><span class="ds-type-sample" style="font-size:2.2rem;font-weight:800">3XL Heading</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-2xl · 1.8rem</span><span class="ds-type-sample" style="font-size:1.8rem;font-weight:800">2XL Heading</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-xl · 1.4rem</span><span class="ds-type-sample" style="font-size:1.4rem;font-weight:800">XL Heading</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-lg · 1.1rem</span><span class="ds-type-sample" style="font-size:1.1rem;font-weight:700">Large 서브 타이틀</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-md · 0.95rem</span><span class="ds-type-sample" style="font-size:0.95rem;font-weight:700">Medium 서브헤딩</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-base · 0.82rem</span><span class="ds-type-sample" style="font-size:0.82rem">Base 본문 텍스트 — 기본 사이즈</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-sm · 0.72rem</span><span class="ds-type-sample" style="font-size:0.72rem">Small 캡션, 버튼</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-xs · 0.65rem</span><span class="ds-type-sample" style="font-size:0.65rem">XS 태그, 메타 정보</span></div>
-  <div class="ds-type-row"><span class="ds-type-meta">--t-2xs · 0.55rem</span><span class="ds-type-sample" style="font-size:0.55rem">2XS 마이크로 라벨</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-display<br>clamp(2.8rem, 5.5vw, 4.5rem)</span><span class="ds-type-sample" style="font-size:var(--t-display);font-weight:800;letter-spacing:-1.5px;line-height:1.1">Display</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-3xl · 2.5rem (40px)</span><span class="ds-type-sample" style="font-size:var(--t-3xl);font-weight:800">3XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-2xl · 2rem (32px)</span><span class="ds-type-sample" style="font-size:var(--t-2xl);font-weight:800">2XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-xl · 1.5rem (24px)</span><span class="ds-type-sample" style="font-size:var(--t-xl);font-weight:800">XL Heading</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-lg · 1.25rem (20px)</span><span class="ds-type-sample" style="font-size:var(--t-lg);font-weight:700">Large 서브 타이틀</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-md · 1.0625rem (17px)</span><span class="ds-type-sample" style="font-size:var(--t-md);font-weight:700">Medium 서브헤딩</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-base · 0.9375rem (15px)</span><span class="ds-type-sample" style="font-size:var(--t-base)">Base 본문 텍스트 — 기본 사이즈</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-sm · 0.8125rem (13px)</span><span class="ds-type-sample" style="font-size:var(--t-sm)">Small 캡션, 버튼</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-xs · 0.75rem (12px)</span><span class="ds-type-sample" style="font-size:var(--t-xs)">XS 태그, 메타 정보</span></div>
+  <div class="ds-type-row"><span class="ds-type-meta">--t-2xs · 0.6875rem (11px)</span><span class="ds-type-sample" style="font-size:var(--t-2xs)">2XS 마이크로 라벨</span></div>
 </section>
 
 <!-- ═══ SPACING ═══ -->
@@ -185,10 +218,10 @@ body { background: var(--c-bg1) }
   <p class="ds-section-desc"><code>--r-*</code> 토큰으로 모서리 반경을 통일합니다.</p>
 
   <div class="ds-radius-grid">
-    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:6px"></div><p class="ds-radius-label">--r-sm · 6px</p></div>
-    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:8px"></div><p class="ds-radius-label">--r-md · 8px</p></div>
-    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:12px"></div><p class="ds-radius-label">--r-lg · 12px</p></div>
-    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:16px"></div><p class="ds-radius-label">--r-xl · 16px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:8px"></div><p class="ds-radius-label">--r-sm · 8px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:12px"></div><p class="ds-radius-label">--r-md · 12px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:16px"></div><p class="ds-radius-label">--r-lg · 16px</p></div>
+    <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:20px"></div><p class="ds-radius-label">--r-xl · 20px</p></div>
     <div class="ds-radius-item"><div class="ds-radius-box" style="border-radius:50px"></div><p class="ds-radius-label">--r-pill · 50px</p></div>
   </div>
 </section>
@@ -285,6 +318,333 @@ body { background: var(--c-bg1) }
   </div>
 </section>
 
+<!-- ═══ ICONS & GRAPHICS ═══ -->
+<section class="ds-section">
+  <h2 class="ds-section-title">Icons & Graphics</h2>
+  <p class="ds-section-desc">AWC의 아이콘 시스템. Stroke 기반 인라인 SVG, <code>currentColor</code> 상속, 글래스모피즘 컨테이너와 조합.</p>
+
+  <!-- ── Principles ── -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-3);margin-bottom:var(--s-12)">
+    <div style="background:rgba(43,92,255,.04);border:1px solid rgba(43,92,255,.08);border-radius:var(--r-lg);padding:var(--s-6);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-12px;right:-12px;width:48px;height:48px;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:50%;opacity:.08"></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <p style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);margin-bottom:4px">Inline SVG Only</p>
+      <p style="font-size:var(--t-xs);color:var(--c-sub);line-height:var(--lh-normal)">외부 라이브러리, 아이콘 폰트 금지.<br>항상 인라인 SVG.</p>
+    </div>
+    <div style="background:rgba(43,92,255,.04);border:1px solid rgba(43,92,255,.08);border-radius:var(--r-lg);padding:var(--s-6);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-12px;right:-12px;width:48px;height:48px;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:50%;opacity:.08"></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <p style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);margin-bottom:4px">Stroke 1.5px</p>
+      <p style="font-size:var(--t-xs);color:var(--c-sub);line-height:var(--lh-normal)">fill 금지. round cap & join.<br>버튼 내부만 stroke-width: 2.</p>
+    </div>
+    <div style="background:rgba(43,92,255,.04);border:1px solid rgba(43,92,255,.08);border-radius:var(--r-lg);padding:var(--s-6);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-12px;right:-12px;width:48px;height:48px;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:50%;opacity:.08"></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <p style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);margin-bottom:4px">4 Size Tokens</p>
+      <p style="font-size:var(--t-xs);color:var(--c-sub);line-height:var(--lh-normal)">16 · 20 · 24 · 32px<br>viewBox 0 0 24 24 고정.</p>
+    </div>
+    <div style="background:rgba(43,92,255,.04);border:1px solid rgba(43,92,255,.08);border-radius:var(--r-lg);padding:var(--s-6);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-12px;right:-12px;width:48px;height:48px;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:50%;opacity:.08"></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+      <p style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-bold);margin-bottom:4px">currentColor</p>
+      <p style="font-size:var(--t-xs);color:var(--c-sub);line-height:var(--lh-normal)">부모 color 상속.<br>하드코딩 색상 금지.</p>
+    </div>
+  </div>
+
+  <!-- ── Size Scale (glassmorphism cards) ── -->
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Size Scale</h3>
+  <div style="background:var(--c-text);border-radius:var(--r-xl);padding:var(--s-10);margin-bottom:var(--s-12);position:relative;overflow:hidden">
+    <div style="position:absolute;top:-80px;right:-80px;width:240px;height:240px;background:radial-gradient(circle,rgba(43,92,255,.15),transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(99,102,241,.1),transparent 70%);pointer-events:none"></div>
+    <div style="display:flex;gap:var(--s-6);align-items:flex-end;flex-wrap:wrap;position:relative;z-index:1">
+      <div style="text-align:center">
+        <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto var(--s-2);color:rgba(255,255,255,.9)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">16px</p>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.55);font-weight:var(--w-semi)">inline</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto var(--s-2);color:rgba(255,255,255,.9)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">20px</p>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.55);font-weight:var(--w-semi)">button</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:72px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto var(--s-2);color:rgba(255,255,255,.9)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">24px</p>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.55);font-weight:var(--w-semi)">standalone</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:84px;height:84px;display:flex;align-items:center;justify-content:center;background:rgba(43,92,255,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(43,92,255,.2);border-radius:var(--r-lg);margin:0 auto var(--s-2);color:var(--c-accent)">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">32px</p>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.55);font-weight:var(--w-semi)">feature</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Icon Library ── -->
+  <!-- ── AWC Icon Library — Gap Style + Round + 2px @ 48px preview ── -->
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Navigation</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:var(--s-10)">
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg><span>go</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7 9.5 14.5"/><path d="M7 17h7"/><path d="M7 17v-7"/></svg><span>back</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/><path d="M11 13 19 5"/><path d="M15 4h5v5"/></svg><span>outbound</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h12"/><path d="m15 8 4 4-4 4"/></svg><span>flow-next</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h5"/><path d="M11 12l7-6"/><path d="M11 12l7 6"/></svg><span>branch</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l7 6"/><path d="M6 18l7-6"/><path d="M15 12h5"/></svg><span>merge</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 4"/><path d="M17 10l-5 4"/></svg><span>expand</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14l5-4"/><path d="M17 14l-5-4"/></svg><span>collapse</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="19" r="1.8" fill="currentColor"/></svg><span>more</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-5.5 5.5"/><path d="M6 18l5.5-5.5"/><path d="M6 6l5.5 5.5"/><path d="M18 18l-5.5-5.5"/></svg><span>close</span></div>
+  </div>
+
+  <!-- ── Key UI Icons (사이트 주요 아이콘) ── -->
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Key UI — 사이트 핵심 아이콘</h3>
+  <p style="font-size:var(--t-sm);color:var(--c-sub);margin-bottom:var(--s-5);line-height:var(--lh-normal)">실제 웹사이트에서 가장 자주 보이는 아이콘. 다른 방에서 적용할 때 이 SVG를 그대로 복사.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:var(--s-12)">
+    <!-- 햄버거 메뉴 (모바일 내비) — 갭 없이 깔끔한 3줄 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      <span>hamburger</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">모바일 내비 토글</span>
+    </div>
+    <!-- 햄버거 → X 전환 (열린 상태) -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-5.5 5.5"/><path d="M6 18l5.5-5.5"/><path d="M6 6l5.5 5.5"/><path d="M18 18l-5.5-5.5"/></svg>
+      <span>hamburger-close</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">메뉴 닫기 (X 전환)</span>
+    </div>
+    <!-- 챗봇 FAB — 말풍선 갭 스타일 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7"/><path d="M3 21v-4"/><path d="M3 13V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/></svg>
+      <span>chatbot</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">채팅 FAB 버튼</span>
+    </div>
+    <!-- 챗봇 전송 — 대각선 send 갭 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 15 22l-4-9-9-4z"/><path d="M22 2 13 13"/></svg>
+      <span>send-message</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">채팅 입력 전송</span>
+    </div>
+    <!-- CTA 화살표 — 일자↔화살촉 갭 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+      <span>cta-arrow</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">Contact · View all 버튼</span>
+    </div>
+    <!-- 모달 메일 아이콘 — 봉투 접힘 갭 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 8.5 5.5"/><path d="m22 7-8.5 5.5"/></svg>
+      <span>modal-mail</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">문의 모달 아이콘</span>
+    </div>
+    <!-- Back 화살표 (서브페이지) — 일자↔화살촉 갭 -->
+    <div class="ico-cell" style="padding:24px 12px 16px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7 9.5 14.5"/><path d="M7 17h7"/><path d="M7 17v-7"/></svg>
+      <span>page-back</span>
+      <span style="color:var(--c-sub);font-size:.5rem;margin-top:2px">서브페이지 ← Back</span>
+    </div>
+  </div>
+
+  <!-- 적용 가이드 -->
+  <div style="background:var(--c-text);border-radius:var(--r-lg);padding:var(--s-6) var(--s-8);margin-bottom:var(--s-12);overflow-x:auto;position:relative">
+    <div style="position:absolute;top:var(--s-4);right:var(--s-5);font-family:var(--f-en);font-size:var(--t-2xs);font-weight:var(--w-semi);letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.2)">MIGRATION GUIDE</div>
+    <pre style="font-family:'SF Mono',Consolas,monospace;font-size:var(--t-xs);color:#e2e8f0;line-height:1.8;margin:0"><code><span style="color:#64748b">/* 햄버거: CSS span 3줄 → SVG 교체 */</span>
+<span style="color:#64748b">/* 기존: .nav-burger span × 2 (CSS 선) */</span>
+<span style="color:#64748b">/* 신규: 중앙 갭 있는 SVG 2줄 */</span>
+
+<span style="color:#64748b">/* 챗봇 FAB: ico-chat 교체 */</span>
+<span style="color:#f472b6">&lt;svg</span> class="ico-chat" viewBox="0 0 24 24"<span style="color:#f472b6">&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M21 15a2 2 0 0 1-2 2H7"/&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M3 21v-4"/&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M3 13V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/&gt;</span>
+<span style="color:#f472b6">&lt;/svg&gt;</span>
+
+<span style="color:#64748b">/* 챗봇 X: ico-x 교체 */</span>
+<span style="color:#f472b6">&lt;svg</span> class="ico-x" viewBox="0 0 24 24"<span style="color:#f472b6">&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M18 6l-5.5 5.5"/&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M6 18l5.5-5.5"/&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M6 6l5.5 5.5"/&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M18 18l-5.5-5.5"/&gt;</span>
+<span style="color:#f472b6">&lt;/svg&gt;</span>
+
+<span style="color:#64748b">/* Contact 버튼 화살표 — 일자↔화살촉 갭 */</span>
+<span style="color:#f472b6">&lt;svg</span> width="16" height="16" viewBox="0 0 24 24"<span style="color:#f472b6">&gt;</span>
+  <span style="color:#7dd3fc">&lt;path d="M7 17 14.5 9.5"/&gt;</span>  <span style="color:#64748b">/* 대각선 (촉 못 미침) */</span>
+  <span style="color:#7dd3fc">&lt;path d="M17 7v7"/&gt;</span>         <span style="color:#64748b">/* 화살촉 세로 */</span>
+  <span style="color:#7dd3fc">&lt;path d="M17 7h-7"/&gt;</span>        <span style="color:#64748b">/* 화살촉 가로 */</span>
+<span style="color:#f472b6">&lt;/svg&gt;</span></code></pre>
+  </div>
+
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Action</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:var(--s-10)">
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.8 15.8 4.7 4.7"/></svg><span>search</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v5"/><path d="M12 14v5"/><path d="M5 12h5"/><path d="M14 12h5"/></svg><span>plus</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6l-9 9"/><path d="M4 13l5 5"/></svg><span>check</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/><path d="M13 20h8"/></svg><span>edit</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>copy</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7" stroke-dasharray="3.5 3.5"/></svg><span>connect</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M12 15V3"/><path d="m8 7 4-4 4 4"/></svg><span>share</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/></svg><span>download</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M9 17H7a5 5 0 0 1 0-10h2"/><path d="M8 12h8"/></svg><span>link</span></div>
+  </div>
+
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Communication</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:var(--s-10)">
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 8.5 5.5"/><path d="m22 7-8.5 5.5"/></svg><span>mail</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7"/><path d="M3 21v-4"/><path d="M3 13V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/></svg><span>chat</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 15 22l-4-9-9-4z"/><path d="M22 2 13 13"/></svg><span>send</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>notify</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 5a2 2 0 0 1 2-2"/></svg><span>phone</span></div>
+  </div>
+
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Content & System</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:var(--s-10)">
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><path d="M9.5 15c.8 1.2 4.2 1.2 5 0"/></svg><span>agent</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h4"/><path d="M10 6l7 6"/><path d="M4 18h4"/><path d="M10 18l7-6"/><path d="M19 12h2"/></svg><span>workflow</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/></svg><span>dashboard</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg><span>file</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4-4"/><path d="m15 13-9 8"/></svg><span>image</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16"/><path d="M6 4l12 8"/><path d="M6 20l12-8"/></svg><span>play</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 16l5-6"/><path d="M12 12l2 2"/><path d="M16 12l5-7"/></svg><span>metric</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7"/><path d="M20 12c0 5-8 9-8 9s-8-4-8-9V5l8-3"/></svg><span>shield</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg><span>user</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3"/><path d="M11 7h9"/><circle cx="8" cy="7" r="2"/><path d="M4 17h9"/><path d="M17 17h3"/><circle cx="15" cy="17" r="2"/></svg><span>settings</span></div>
+  </div>
+
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Social & External</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:var(--s-12)">
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h8"/><path d="M14 12h8"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg><span>globe</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>linkedin</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><span>instagram</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l6.5 8"/><path d="M12.5 14L4 20h2l5.5-6.8"/><path d="M13.5 12.5L20 4h-2l-5 6.2"/><path d="M15 14.5L16 20h4l-7-8.5"/></svg><span>X</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5a5.4 5.4 0 0 0-1-3.5c.3-1.15.3-2.35 0-3.5 0 0-1 0-3 1.5a14 14 0 0 0-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5a4.48 4.48 0 0 0-1 3.5v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span>github</span></div>
+    <div class="ico-cell"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12.2 16.5c-3 0-4.2-1.9-4.2-4.3C8 9.5 9.6 7 12.4 7c1.8 0 3.1 1.1 3.5 2.9"/><path d="M15.8 12.2a3.5 3.5 0 1 1-1.2 2.4"/></svg><span>threads</span></div>
+  </div>
+
+  <!-- ── Context: Dark / Glass / Button ── -->
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Context Usage</h3>
+
+  <!-- Dark + Glass Card Container -->
+  <div style="background:var(--c-card-bg);border-radius:var(--r-xl);padding:var(--s-8);margin-bottom:var(--s-6);position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(43,92,255,.06),rgba(99,102,241,.04));pointer-events:none"></div>
+    <p style="font-family:var(--f-en);font-size:var(--t-2xs);font-weight:var(--w-semi);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:var(--s-5);position:relative">On Dark / Glass Surfaces</p>
+    <div style="display:flex;gap:var(--s-8);flex-wrap:wrap;align-items:center;position:relative">
+      <!-- White -->
+      <div style="text-align:center;color:rgba(255,255,255,.9)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">white</p>
+      </div>
+      <!-- Accent -->
+      <div style="text-align:center;color:var(--c-accent)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(43,92,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(43,92,255,.2);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">accent</p>
+      </div>
+      <!-- Muted -->
+      <div style="text-align:center;color:rgba(255,255,255,.35)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">muted</p>
+      </div>
+      <!-- Gradient -->
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--c-accent),var(--c-indigo));border-radius:var(--r-md);margin:0 auto 6px;color:white">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h4"/><path d="M10 6l7 6"/><path d="M4 18h4"/><path d="M10 18l7-6"/><path d="M19 12h2"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">gradient fill</p>
+      </div>
+      <div style="width:1px;height:48px;background:rgba(255,255,255,.08)"></div>
+      <!-- Combo examples from site -->
+      <div style="text-align:center;color:rgba(255,255,255,.9)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">search</p>
+      </div>
+      <div style="text-align:center;color:var(--c-accent)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(43,92,255,.12);border:1px solid rgba(43,92,255,.2);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7"/><path d="M3 21v-6a2 2 0 0 1 2-2"/><path d="M3 13V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">chat</p>
+      </div>
+      <div style="text-align:center;color:rgba(255,255,255,.9)">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);margin:0 auto 6px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <p style="font-family:var(--f-en);font-size:var(--t-2xs);color:rgba(255,255,255,.35)">bell</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button combos -->
+  <div style="display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center;margin-bottom:var(--s-6)">
+    <button class="btn btn--primary" style="gap:8px">
+      Contact
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+    </button>
+    <button class="btn btn--sub" style="gap:8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m8 10 4 4 4-4"/><path d="M12 14V2" stroke-dasharray="4 2"/></svg>
+      Download
+    </button>
+    <a href="#" style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:var(--c-accent);display:inline-flex;align-items:center;gap:6px;transition:gap .15s">
+      View all
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+    </a>
+  </div>
+
+  <!-- On dark button row -->
+  <div style="background:var(--c-text);border-radius:var(--r-lg);padding:var(--s-5);display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center;margin-bottom:var(--s-10)">
+    <button class="btn btn--white" style="gap:8px">
+      Contact
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+    </button>
+    <button class="btn btn--ghost" style="gap:8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Email
+    </button>
+    <a href="#" style="font-family:var(--f-en);font-size:var(--t-sm);font-weight:var(--w-semi);color:rgba(255,255,255,.5);display:inline-flex;align-items:center;gap:6px">
+      View all
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg>
+    </a>
+  </div>
+
+  <!-- Code Snippet -->
+  <h3 style="font-family:var(--f-en);font-size:var(--t-xs);font-weight:var(--w-semi);letter-spacing:3px;text-transform:uppercase;color:var(--c-accent);margin-bottom:var(--s-5)">Usage</h3>
+  <div style="background:var(--c-text);border-radius:var(--r-lg);padding:var(--s-6) var(--s-8);overflow-x:auto;position:relative">
+    <div style="position:absolute;top:var(--s-4);right:var(--s-5);font-family:var(--f-en);font-size:var(--t-2xs);font-weight:var(--w-semi);letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.2)">SVG</div>
+    <pre style="font-family:'SF Mono',Consolas,monospace;font-size:var(--t-xs);color:#e2e8f0;line-height:1.8;margin:0"><code><span style="color:#64748b">/* 기본 아이콘 */</span>
+<span style="color:#f472b6">&lt;svg</span> <span style="color:#7dd3fc">width</span>=<span style="color:#86efac">"24"</span> <span style="color:#7dd3fc">height</span>=<span style="color:#86efac">"24"</span> <span style="color:#7dd3fc">viewBox</span>=<span style="color:#86efac">"0 0 24 24"</span>
+     <span style="color:#7dd3fc">fill</span>=<span style="color:#86efac">"none"</span> <span style="color:#7dd3fc">stroke</span>=<span style="color:#86efac">"currentColor"</span>
+     <span style="color:#7dd3fc">stroke-width</span>=<span style="color:#86efac">"1.5"</span>
+     <span style="color:#7dd3fc">stroke-linecap</span>=<span style="color:#86efac">"round"</span>
+     <span style="color:#7dd3fc">stroke-linejoin</span>=<span style="color:#86efac">"round"</span><span style="color:#f472b6">&gt;</span>
+
+<span style="color:#64748b">/* 버튼 안: stroke-width 2 */</span>
+<span style="color:#64748b">/* 사이즈:  16 inline · 20 btn · 24 solo · 32 feature */</span>
+
+<span style="color:#64748b">/* 글래스 컨테이너 (다크 배경) */</span>
+<span style="color:#7dd3fc">background</span>: <span style="color:#86efac">rgba(255,255,255,.08)</span>;
+<span style="color:#7dd3fc">backdrop-filter</span>: <span style="color:#86efac">blur(12px)</span>;
+<span style="color:#7dd3fc">border</span>: <span style="color:#86efac">1px solid rgba(255,255,255,.1)</span>;
+
+<span style="color:#64748b">/* 액센트 글래스 컨테이너 */</span>
+<span style="color:#7dd3fc">background</span>: <span style="color:#86efac">rgba(43,92,255,.12)</span>;
+<span style="color:#7dd3fc">border</span>: <span style="color:#86efac">1px solid rgba(43,92,255,.2)</span>;</code></pre>
+  </div>
+</section>
+
 <!-- ═══ TOKEN REFERENCE ═══ -->
 <section class="ds-section">
   <h2 class="ds-section-title">Quick Reference</h2>
@@ -295,14 +655,14 @@ body { background: var(--c-bg1) }
       <tr><th>Category</th><th>Token</th><th>Value</th><th>Usage</th></tr>
     </thead>
     <tbody>
-      <tr><td>Color</td><td><code>--c-text</code></td><td>#111111</td><td>본문, 제목</td></tr>
+      <tr><td>Color</td><td><code>--c-text</code></td><td>#191919</td><td>본문, 제목</td></tr>
       <tr><td>Color</td><td><code>--c-sub</code></td><td>#555555</td><td>보조 텍스트</td></tr>
       <tr><td>Color</td><td><code>--c-accent</code></td><td>#2B5CFF</td><td>강조, 링크, CTA</td></tr>
-      <tr><td>Type</td><td><code>--t-base</code></td><td>0.82rem</td><td>기본 본문</td></tr>
-      <tr><td>Type</td><td><code>--t-xl</code></td><td>1.4rem</td><td>섹션 타이틀</td></tr>
+      <tr><td>Type</td><td><code>--t-base</code></td><td>0.9375rem (15px)</td><td>기본 본문</td></tr>
+      <tr><td>Type</td><td><code>--t-xl</code></td><td>1.5rem (24px)</td><td>섹션 타이틀</td></tr>
       <tr><td>Space</td><td><code>--s-4</code></td><td>16px</td><td>기본 간격</td></tr>
       <tr><td>Space</td><td><code>--s-8</code></td><td>32px</td><td>섹션 내부 간격</td></tr>
-      <tr><td>Radius</td><td><code>--r-lg</code></td><td>12px</td><td>카드, 배너</td></tr>
+      <tr><td>Radius</td><td><code>--r-lg</code></td><td>16px</td><td>카드, 배너</td></tr>
       <tr><td>Shadow</td><td><code>--shadow-sm</code></td><td>0 2px 12px rgba(0,0,0,.04)</td><td>NAV, 카드 기본</td></tr>
     </tbody>
   </table>

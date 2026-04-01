@@ -12,18 +12,27 @@
 </head>
 <body>
 
-<nav class="nav">
-  <a class="nav-logo" href="index.html">AWC<span class="logo-dot"></span></a>
-  <div class="nav-center">Agentic Workflows Club</div>
-  <div class="nav-right">
-    <a href="index.html">Home</a>
-    <a href="cases.html">Cases</a>
-    <a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" class="nav-cta">Join →</a>
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo-mobile">AWC</a>
+  <div class="nav-pill">
+    <a class="nav-item nav-logo" href="index.html">AWC</a>
+    <a class="nav-item" href="cases.html">Cases</a>
+    <a class="nav-item" href="index.html#workflow">Workflow</a>
+    <button class="nav-item nav-cta" onclick="location.href='mailto:bruce@intellieffect.com'" type="button">Contact <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg></button>
   </div>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="메뉴 열기" onclick="toggleMobileMenu()">
+    <svg class="burger-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    <svg class="burger-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-5.5 5.5"/><path d="M6 18l5.5-5.5"/><path d="M6 6l5.5 5.5"/><path d="M18 18l-5.5-5.5"/></svg>
+  </button>
 </nav>
+<div class="nav-backdrop" id="navBackdrop" onclick="closeMobileMenu()"></div>
+<div class="nav-overlay" id="navOverlay">
+  <a href="cases.html" class="nav-overlay-item" onclick="closeMobileMenu()">Cases</a>
+  <a href="index.html#workflow" class="nav-overlay-item" onclick="closeMobileMenu()">Workflow</a>
+  <button class="nav-overlay-cta" onclick="closeMobileMenu();location.href='mailto:bruce@intellieffect.com'" type="button">Contact <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 14.5 9.5"/><path d="M17 7v7"/><path d="M17 7h-7"/></svg></button>
+</div>
 
 <div class="page-hero">
-  <a href="index.html" class="page-hero-back">← Back</a>
   <p class="page-label">A1 — Community</p>
   <h1 class="section-title" style="font-size:clamp(2rem,4vw,3rem)">AWC 커뮤니티</h1>
   <p class="section-sub" style="max-width:500px">실시간으로 인사이트를 나누고, 실험하고, 실패를 공유하는 공간.</p>
@@ -51,15 +60,11 @@
   </div>
 </div>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 AWC · Bruce Choe</span>
-    <div class="footer-right">
-      <a href="index.html">Home</a>
-      <a href="cases.html">Cases</a>
-    </div>
-  </div>
-</footer>
+<footer class="footer"><div class="wrap"><div class="footer-inner"><span>© 2026 AWC · Bruce Choe · IntelliEffect</span><nav class="footer-links" aria-label="Footer links"><a href="https://intellieffect.com" target="_blank" rel="noopener">IntelliEffect</a><a href="https://open.kakao.com/o/ssTP6Omi" target="_blank" rel="noopener">Community</a><a href="https://brxce.ai" target="_blank" rel="noopener">brxce.ai</a></nav></div></div></footer>
 
+<script>
+function toggleMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');const isOpen=b.classList.toggle('open');o.classList.toggle('open',isOpen);d.classList.toggle('open',isOpen);document.body.style.overflow=isOpen?'hidden':'';}
+function closeMobileMenu(){const b=document.getElementById('navBurger'),o=document.getElementById('navOverlay'),d=document.getElementById('navBackdrop');b.classList.remove('open');o.classList.remove('open');d.classList.remove('open');document.body.style.overflow='';}
+</script>
 </body>
 </html>

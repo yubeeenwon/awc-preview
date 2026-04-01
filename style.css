@@ -199,8 +199,8 @@ img { object-fit: contain; max-width: 100%; height: auto; }
   text-transform: uppercase;
   color: var(--bg);
   background: var(--accent);
-  padding: 14px 32px;
-  border-radius: 8px;
+  padding: 10px 28px;
+  border-radius: 50px;
   border: none;
   transition: all .3s var(--ease);
 }
@@ -215,9 +215,9 @@ img { object-fit: contain; max-width: 100%; height: auto; }
   font-weight: 600;
   letter-spacing: 1px;
   color: var(--muted);
-  padding: 14px 24px;
+  padding: 10px 24px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 50px;
   transition: all .3s;
 }
 .btn-ghost:hover { border-color: var(--fg); color: var(--fg); }
