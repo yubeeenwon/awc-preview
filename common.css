@@ -261,7 +261,7 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
 /* ─── Responsive ─── */
 @media (max-width: 834px) {
   /* Nav → hamburger on mobile */
-  .nav-pill { display: none }
+  .nav-pill { display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; }
   .nav-burger { display: flex }
   .nav-overlay { display: flex }
   .nav {
@@ -274,6 +274,7 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
     position: static; top: auto; right: auto; z-index: auto;
   }
   .nav-logo-mobile {
+    display: block !important;
     font-family: var(--f-en); font-weight: var(--w-heavy); font-size: 0.875rem;
     color: var(--c-text); pointer-events: all; letter-spacing: 0.02em;
   }
@@ -285,7 +286,7 @@ button { font-family: var(--f-kr); cursor: pointer; border: none; background: no
 }
 @media (min-width: 835px) {
   .nav-burger { display: none !important }
-  .nav-overlay { display: none !important }
+  .nav-overlay { display: none !important; visibility: hidden !important }
   .nav-backdrop { display: none !important; opacity: 0 !important }
-  .nav-logo-mobile { display: none }
+  .nav-logo-mobile { display: none !important }
 }
